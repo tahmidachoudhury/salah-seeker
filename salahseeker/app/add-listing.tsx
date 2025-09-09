@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
 import { Button, StyleSheet, Switch, TextInput } from "react-native";
-import { auth } from "@/services/firebase";
+// import { auth } from "@/services/firebase";
 
 export default function AddListing() {
   const router = useRouter();
@@ -19,6 +19,7 @@ export default function AddListing() {
   const [wudu, setWudu] = useState(false);
   const [women, setWomen] = useState(false);
 
+  //This line below is to check if the user is signed in
   // console.log(auth.currentUser?.uid);
 
   const handleSubmit = async () => {
@@ -44,6 +45,8 @@ export default function AddListing() {
         updatedAt: serverTimestamp(),
         dedupeKey: `${name.toLowerCase().replace(/\s+/g, "")}_${lat}_${lng}`,
       });
+
+      // Success 🎉🎉 currently set to redirect to the map route
       router.push("/map");
     } catch (err) {
       console.error("❌ Failed to submit:", err);
@@ -54,9 +57,11 @@ export default function AddListing() {
 
   return (
     <View style={styles.container}>
+      {/* Name of the listing -> prayer room or masjid */}
       <Text style={styles.label}>Name</Text>
       <TextInput style={styles.input} value={name} onChangeText={setName} />
 
+      {/*  Listing Type:  "masjid" | "prayer_room" | "restaurant" | "cafe"*/}
       <Text style={styles.label}>Spot Type</Text>
       <TextInput
         style={styles.input}
@@ -64,12 +69,15 @@ export default function AddListing() {
         onChangeText={(v) => setSpotType(v as any)}
       />
 
+      {/* Address */}
       <Text style={styles.label}>Address</Text>
       <TextInput
         style={styles.input}
         value={address}
         onChangeText={setAddress}
       />
+
+      {/* Hard code lat and long */}
 
       <Text style={styles.label}>Latitude</Text>
       <TextInput
@@ -87,6 +95,7 @@ export default function AddListing() {
         keyboardType="numeric"
       />
 
+      {/* wudu and women facility are boolean switches!! */}
       <View style={styles.toggleRow}>
         <Text>Wudu Facility</Text>
         <Switch value={wudu} onValueChange={setWudu} />
