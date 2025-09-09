@@ -12,7 +12,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.replace("/map"); // Navigate to the map screen after login
+      router.replace("/add-listing"); // Navigate to the map screen after login
     } catch (err: any) {
       setError(err.message);
     }
