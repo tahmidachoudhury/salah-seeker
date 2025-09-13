@@ -1,8 +1,10 @@
 import { Stack } from "expo-router";
 import MapboxGL from "@rnmapbox/maps";
-import { MAPBOX_TOKEN } from "../utils/mapbox";
+import Constants from "expo-constants";
+
+// setting the token early, pulled from app config
+MapboxGL.setAccessToken(Constants.expoConfig?.extra?.mapboxAccessToken);
 
 export default function RootLayout() {
-  MapboxGL.setAccessToken(MAPBOX_TOKEN); //set mapbox token globally across all components
   return <Stack initialRouteName="login" />;
 }

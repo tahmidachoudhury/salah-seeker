@@ -34,13 +34,14 @@
       [
         "@rnmapbox/maps",
         {
+          "RNMapboxMapsDownloadToken": SECRET_KEY,
           "RNMapboxMapsImpl": "mapbox",
           "installComponents": true
         }
       ]
     ],
     "extra": {
-      "mapboxAccessToken": "YOUR_MAPBOX_ACCESS_TOKEN",
+      "mapboxAccessToken": "pk.eyJ1IjoidGFobWlkMDEiLCJhIjoiY21laDJkMnJjMDM0bjJrcDZucm1ubDZ5cCJ9.p85LMck0PSQRKa_obWk68w",
       "router": {},
       "eas": {
         "projectId": "6bf60eb6-e114-4d1a-bd9c-0745f8d8add8"

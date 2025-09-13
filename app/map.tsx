@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, PermissionsAndroid, Platform } from "react-native";
 import MapboxGL from "@rnmapbox/maps";
 
-MapboxGL.setAccessToken("YOUR_TOKEN"); // Inline or via import
+MapboxGL.setAccessToken(
+  "pk.eyJ1IjoidGFobWlkMDEiLCJhIjoiY21laDJkMnJjMDM0bjJrcDZucm1ubDZ5cCJ9.p85LMck0PSQRKa_obWk68w"
+);
 
 export default function MapScreen() {
   const [coords, setCoords] = useState<[number, number] | null>(null);
@@ -26,6 +28,7 @@ export default function MapScreen() {
     <View style={styles.container}>
       <MapboxGL.MapView
         style={styles.map}
+        // styleURL="mapbox://styles/tahmid01/cmficgauk003k01sdcfwx2x3y"
         styleURL="mapbox://styles/mapbox/light-v11"
         logoEnabled={false}
       >
