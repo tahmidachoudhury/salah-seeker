@@ -1,11 +1,48 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { View, StyleSheet, PermissionsAndroid, Platform } from "react-native";
+import MapboxGL from "@rnmapbox/maps";
 
-export default function Map() {
+MapboxGL.setAccessToken("YOUR_TOKEN"); // Inline or via import
+
+export default function MapScreen() {
+  const [coords, setCoords] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    const getLocation = async () => {
+      if (Platform.OS === "android") {
+        await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+        );
+      }
+      const location = await MapboxGL.locationManager.getLastKnownLocation();
+      if (location) {
+        setCoords([location.coords.longitude, location.coords.latitude]);
+      }
+    };
+    getLocation();
+  }, []);
+
   return (
-    <View>
-      <Text>The Map goes here!</Text>
+    <View style={styles.container}>
+      <MapboxGL.MapView
+        style={styles.map}
+        styleURL="mapbox://styles/mapbox/light-v11"
+        logoEnabled={false}
+      >
+        <MapboxGL.Camera
+          zoomLevel={13}
+          centerCoordinate={coords || [-0.1278, 51.5074]} // Fallback to London
+        />
+        <MapboxGL.UserLocation
+          visible={true}
+          showsUserHeadingIndicator={true}
+        />
+      </MapboxGL.MapView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  map: { flex: 1 },
+});
