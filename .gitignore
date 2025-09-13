@@ -1,0 +1,41 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+android/
+ios/
+
+# Expo + EAS
+.expo/
+.expo-shared/
+eas.json
+
+# React Native cache
+*.log
+*.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# macOS system files
+.DS_Store
+
+# Environment files
+.env
+.env.*
+
+# Firebase service keys (if used)
+serviceAccountKey.json
+
+# VSCode settings (optional)
+.vscode/
+
+# Coverage reports
+coverage/
+
+
