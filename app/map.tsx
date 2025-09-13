@@ -4,6 +4,7 @@ import MapboxGL from "@rnmapbox/maps";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import { PrayerSpot } from "@/types/PrayerSpot";
+import { router } from "expo-router";
 
 //mapbox public key
 MapboxGL.setAccessToken(
@@ -83,8 +84,10 @@ export default function MapScreen() {
               key={spot.id}
               id={spot.id}
               coordinate={[spot.location.lng, spot.location.lat]}
+              onSelected={() => router.push(`/listing-detail?id=${spot.id}`)}
             >
-              <></>
+              {/* I need this view here or else rnmaps complains as its typed to have a child element */}
+              <View />
             </MapboxGL.PointAnnotation>
           ) : null
         )}
