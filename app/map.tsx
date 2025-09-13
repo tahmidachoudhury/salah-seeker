@@ -28,8 +28,8 @@ export default function MapScreen() {
     <View style={styles.container}>
       <MapboxGL.MapView
         style={styles.map}
-        // styleURL="mapbox://styles/tahmid01/cmficgauk003k01sdcfwx2x3y"
-        styleURL="mapbox://styles/mapbox/light-v11"
+        styleURL="mapbox://styles/tahmid01/cmfikgi6b004k01quevez8hsu"
+        // styleURL="mapbox://styles/mapbox/light-v11"
         logoEnabled={false}
       >
         <MapboxGL.Camera
