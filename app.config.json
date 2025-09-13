@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "salahseeker",
+    "slug": "salahseeker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "salahseeker",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.tahmid_02.salahseeker"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsImpl": "mapbox",
+          "installComponents": true
+        }
+      ]
+    ],
+    "extra": {
+      "mapboxAccessToken": "YOUR_MAPBOX_ACCESS_TOKEN",
+      "router": {},
+      "eas": {
+        "projectId": "6bf60eb6-e114-4d1a-bd9c-0745f8d8add8"
+      }
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
