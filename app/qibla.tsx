@@ -42,13 +42,17 @@ export default function QiblaScreen() {
     getLocation();
   }, []);
 
+  // says approx 118.7 in London which is correct
   const qiblaBearing = userCoords
     ? getQiblaBearing(userCoords.lat, userCoords.lng)
     : 0;
 
-  const rotation = qiblaBearing - heading;
+  const tolerance = 10; // degrees
+  const facingQibla = Math.abs(heading - qiblaBearing) < tolerance;
 
-  // 🔑 must return JSX here
+  let rotation = qiblaBearing - heading;
+  if (rotation < 0) rotation += 360;
+
   return (
     <View style={{ alignItems: "center", marginTop: 40 }}>
       <Text>Qibla Direction</Text>
@@ -77,6 +81,9 @@ export default function QiblaScreen() {
           }}
         />
       </View>
+      <Text style={{ marginTop: 10 }}>
+        {facingQibla ? "✅ Facing Qibla" : "↔ Adjust your direction"}
+      </Text>
     </View>
   );
 }
