@@ -17,7 +17,7 @@
 
 ### 📅 August 14, 2025
 
-- Switched from Mapbox "standard" style (broken on RN) to custom style with no imports
+- Switched from Mapbox "standard" style (broken on React Native) to custom style with no imports
 - Successfully rendered custom built Mapbox map + user location
 - Set up Firestore query to load `spots` firestore table onto map
 - Rendered spots on map with `PointAnnotation`

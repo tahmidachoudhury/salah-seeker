@@ -1,977 +1,137 @@
 [
   {
-    "name": "East Road Masjid",
-    "spotType": "prayer_room",
+    "name": "Hayes Retail Park Prayer Room",
+    "spotType": "mall",
     "location": {
-      "lat": 51.512316,
-      "lng": -0.143298,
-      "geopoint": "GeoPoint(51.512316,-0.143298)"
+      "lat": 51.5079,
+      "lng": -0.4201,
+      "geopoint": "GeoPoint(51.5079,-0.4201)"
     },
-    "address": "109 West Road, London",
-    "directions": "Inside Mall, near Zara",
-    "googleMapsUrl": "https://maps.google.com/?q=East+Road+Masjid",
+    "address": "Uxbridge Rd, Hayes UB4",
+    "directions": "Second floor near food court",
+    "googleMapsUrl": "https://maps.google.com/?q=Hayes+Retail+Park+Prayer+Room",
     "googlePlaceId": null,
     "amenities": {
       "wudu": true,
       "women": true,
-      "toilets": false,
+      "toilets": true,
       "disabilityAccess": true
     },
     "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "private",
-    "capacityHint": "large",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "eastroadmasjid_51.512316_-0.143298"
-  },
-  {
-    "name": "Westfield Prayer Room",
-    "spotType": "masjid",
-    "location": {
-      "lat": 51.4577,
-      "lng": -0.121868,
-      "geopoint": "GeoPoint(51.4577,-0.121868)"
-    },
-    "address": "113 West Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=Westfield+Prayer+Room",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "private",
-    "capacityHint": "small",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "westfieldprayerroom_51.4577_-0.121868"
-  },
-  {
-    "name": "Halal Express",
-    "spotType": "prayer_room",
-    "location": {
-      "lat": 51.485855,
-      "lng": -0.152688,
-      "geopoint": "GeoPoint(51.485855,-0.152688)"
-    },
-    "address": "100 East Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=Halal+Express",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": false,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "private",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "halalexpress_51.485855_-0.152688"
-  },
-  {
-    "name": "Central Mosque",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.472947,
-      "lng": -0.108058,
-      "geopoint": "GeoPoint(51.472947,-0.108058)"
-    },
-    "address": "126 East Road, London",
-    "directions": "Inside Mall, near Zara",
-    "googleMapsUrl": "https://maps.google.com/?q=Central+Mosque",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
+      "mon": [{ "open": "09:00", "close": "21:00" }],
+      "fri": [{ "open": "09:00", "close": "22:00" }],
+      "sun": [{ "open": "10:00", "close": "18:00" }],
       "timezone": "Europe/London"
     },
     "availability": "customers_only",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "centralmosque_51.472947_-0.108058"
-  },
-  {
-    "name": "Northside Cafe",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.482245,
-      "lng": -0.082054,
-      "geopoint": "GeoPoint(51.482245,-0.082054)"
-    },
-    "address": "126 East Road, London",
-    "directions": "Inside Mall, near Zara",
-    "googleMapsUrl": "https://maps.google.com/?q=Northside+Cafe",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": false,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "public",
-    "capacityHint": "small",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "northsidecafe_51.482245_-0.082054"
-  },
-  {
-    "name": "Campus Musallah",
-    "spotType": "prayer_room",
-    "location": {
-      "lat": 51.527265,
-      "lng": -0.090267,
-      "geopoint": "GeoPoint(51.527265,-0.090267)"
-    },
-    "address": "205 West Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=Campus+Musallah",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": false,
-      "toilets": false,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "students_only",
-    "capacityHint": "small",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "campusmusallah_51.527265_-0.090267"
-  },
-  {
-    "name": "Station Prayer Room",
-    "spotType": "masjid",
-    "location": {
-      "lat": 51.556589,
-      "lng": -0.113313,
-      "geopoint": "GeoPoint(51.556589,-0.113313)"
-    },
-    "address": "281 East Road, London",
-    "directions": "Use lift to 3rd floor",
-    "googleMapsUrl": "https://maps.google.com/?q=Station+Prayer+Room",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": true,
-      "toilets": false,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "customers_only",
-    "capacityHint": "small",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "stationprayerroom_51.556589_-0.113313"
-  },
-  {
-    "name": "Green Street Masjid",
-    "spotType": "cafe",
-    "location": {
-      "lat": 51.511558,
-      "lng": -0.099164,
-      "geopoint": "GeoPoint(51.511558,-0.099164)"
-    },
-    "address": "182 East Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=Green+Street+Masjid",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": true,
-      "toilets": false,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "public",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "greenstreetmasjid_51.511558_-0.099164"
-  },
-  {
-    "name": "Haramain Restaurant",
-    "spotType": "prayer_room",
-    "location": {
-      "lat": 51.537177,
-      "lng": -0.176512,
-      "geopoint": "GeoPoint(51.537177,-0.176512)"
-    },
-    "address": "265 East Road, London",
-    "directions": null,
-    "googleMapsUrl": "https://maps.google.com/?q=Haramain+Restaurant",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": false,
-      "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "customers_only",
-    "capacityHint": "large",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "haramainrestaurant_51.537177_-0.176512"
-  },
-  {
-    "name": "Metro Center Musallah",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.548198,
-      "lng": -0.107594,
-      "geopoint": "GeoPoint(51.548198,-0.107594)"
-    },
-    "address": "170 West Road, London",
-    "directions": "Use lift to 3rd floor",
-    "googleMapsUrl": "https://maps.google.com/?q=Metro+Center+Musallah",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": true,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "customers_only",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "metrocentermusallah_51.548198_-0.107594"
-  },
-  {
-    "name": "South Bank Masjid",
-    "spotType": "cafe",
-    "location": {
-      "lat": 51.534708,
-      "lng": -0.101237,
-      "geopoint": "GeoPoint(51.534708,-0.101237)"
-    },
-    "address": "18 West Road, London",
-    "directions": null,
-    "googleMapsUrl": "https://maps.google.com/?q=South+Bank+Masjid",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": true,
-      "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "public",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "southbankmasjid_51.534708_-0.101237"
-  },
-  {
-    "name": "Huda Cafe",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.464821,
-      "lng": -0.08197,
-      "geopoint": "GeoPoint(51.464821,-0.08197)"
-    },
-    "address": "70 North Road, London",
-    "directions": "Next to Costa, Level 2",
-    "googleMapsUrl": "https://maps.google.com/?q=Huda+Cafe",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": true,
-      "toilets": false,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "public",
-    "capacityHint": "unknown",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "hudacafe_51.464821_-0.08197"
-  },
-  {
-    "name": "Shifa Centre",
-    "spotType": "cafe",
-    "location": {
-      "lat": 51.498106,
-      "lng": -0.142811,
-      "geopoint": "GeoPoint(51.498106,-0.142811)"
-    },
-    "address": "272 West Road, London",
-    "directions": "Next to Costa, Level 2",
-    "googleMapsUrl": "https://maps.google.com/?q=Shifa+Centre",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": true,
-      "toilets": false,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "customers_only",
-    "capacityHint": "small",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "shifacentre_51.498106_-0.142811"
-  },
-  {
-    "name": "Taqwa Restaurant",
-    "spotType": "masjid",
-    "location": {
-      "lat": 51.466975,
-      "lng": -0.12603,
-      "geopoint": "GeoPoint(51.466975,-0.12603)"
-    },
-    "address": "27 West Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=Taqwa+Restaurant",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": false,
-      "toilets": true,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "private",
-    "capacityHint": "unknown",
-    "multiFaith": true,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "taqwarestaurant_51.466975_-0.12603"
-  },
-  {
-    "name": "Unity Prayer Room",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.479543,
-      "lng": -0.109837,
-      "geopoint": "GeoPoint(51.479543,-0.109837)"
-    },
-    "address": "200 West Road, London",
-    "directions": "Next to Costa, Level 2",
-    "googleMapsUrl": "https://maps.google.com/?q=Unity+Prayer+Room",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": true,
-      "women": true,
-      "toilets": true,
-      "disabilityAccess": true
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "students_only",
     "capacityHint": "medium",
     "multiFaith": false,
     "sectNotes": null,
     "verified": false,
-    "source": "user",
+    "source": "seed",
     "ownerId": "admin",
     "images": [],
     "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "unityprayerroom_51.479543_-0.109837"
+    "createdAt": "2025-09-14T07:20:00Z",
+    "updatedAt": "2025-09-14T07:20:00Z",
+    "dedupeKey": "hayesretailpark_51.5079_-0.4201"
   },
   {
-    "name": "Peaceful Cafe",
-    "spotType": "cafe",
+    "name": "Heathrow Terminal 3 Multi-Faith Room",
+    "spotType": "airport",
     "location": {
-      "lat": 51.499794,
-      "lng": -0.139286,
-      "geopoint": "GeoPoint(51.499794,-0.139286)"
+      "lat": 51.4706,
+      "lng": -0.4543,
+      "geopoint": "GeoPoint(51.4706,-0.4543)"
     },
-    "address": "71 East Road, London",
-    "directions": "Next to Costa, Level 2",
-    "googleMapsUrl": "https://maps.google.com/?q=Peaceful+Cafe",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": true,
-      "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "customers_only",
-    "capacityHint": "large",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "peacefulcafe_51.499794_-0.139286"
-  },
-  {
-    "name": "City View Masjid",
-    "spotType": "prayer_room",
-    "location": {
-      "lat": 51.511385,
-      "lng": -0.168913,
-      "geopoint": "GeoPoint(51.511385,-0.168913)"
-    },
-    "address": "236 West Road, London",
-    "directions": "Use lift to 3rd floor",
-    "googleMapsUrl": "https://maps.google.com/?q=City+View+Masjid",
+    "address": "Terminal 3, Heathrow Airport, TW6",
+    "directions": "Airside, near Gate 23",
+    "googleMapsUrl": "https://maps.google.com/?q=Heathrow+Terminal+3+Multi-Faith+Room",
     "googlePlaceId": null,
     "amenities": {
       "wudu": true,
       "women": true,
       "toilets": true,
-      "disabilityAccess": false
-    },
-    "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
-      "timezone": "Europe/London"
-    },
-    "availability": "students_only",
-    "capacityHint": "medium",
-    "multiFaith": false,
-    "sectNotes": null,
-    "verified": false,
-    "source": "user",
-    "ownerId": "admin",
-    "images": [],
-    "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "cityviewmasjid_51.511385_-0.168913"
-  },
-  {
-    "name": "Global Tower Prayer Space",
-    "spotType": "restaurant",
-    "location": {
-      "lat": 51.48617,
-      "lng": -0.130645,
-      "geopoint": "GeoPoint(51.48617,-0.130645)"
-    },
-    "address": "116 East Road, London",
-    "directions": "Inside Mall, near Zara",
-    "googleMapsUrl": "https://maps.google.com/?q=Global+Tower+Prayer+Space",
-    "googlePlaceId": null,
-    "amenities": {
-      "wudu": false,
-      "women": false,
-      "toilets": false,
       "disabilityAccess": true
     },
     "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
+      "mon": [{ "open": "00:00", "close": "23:59" }],
+      "fri": [{ "open": "00:00", "close": "23:59" }],
+      "sun": [{ "open": "00:00", "close": "23:59" }],
       "timezone": "Europe/London"
     },
-    "availability": "students_only",
+    "availability": "public",
     "capacityHint": "large",
-    "multiFaith": false,
+    "multiFaith": true,
     "sectNotes": null,
-    "verified": false,
-    "source": "user",
+    "verified": true,
+    "source": "seed",
     "ownerId": "admin",
     "images": [],
     "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "globaltowerprayerspace_51.48617_-0.130645"
+    "createdAt": "2025-09-14T07:20:00Z",
+    "updatedAt": "2025-09-14T07:20:00Z",
+    "dedupeKey": "heathrowt3multifaith_51.4706_-0.4543"
   },
   {
-    "name": "The Olive Room",
-    "spotType": "masjid",
+    "name": "Southall Market Prayer Hall",
+    "spotType": "community_centre",
     "location": {
-      "lat": 51.546239,
-      "lng": -0.146361,
-      "geopoint": "GeoPoint(51.546239,-0.146361)"
+      "lat": 51.5097,
+      "lng": -0.3763,
+      "geopoint": "GeoPoint(51.5097,-0.3763)"
     },
-    "address": "115 South Road, London",
-    "directions": "Back entrance",
-    "googleMapsUrl": "https://maps.google.com/?q=The+Olive+Room",
+    "address": "High St, Southall UB1",
+    "directions": "Behind market stalls, Unit 12",
+    "googleMapsUrl": "https://maps.google.com/?q=Southall+Market+Prayer+Hall",
     "googlePlaceId": null,
     "amenities": {
-      "wudu": false,
+      "wudu": true,
       "women": false,
-      "toilets": true,
+      "toilets": false,
       "disabilityAccess": false
     },
     "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
+      "mon": [{ "open": "08:00", "close": "20:00" }],
+      "fri": [{ "open": "08:00", "close": "22:00" }],
+      "sun": [{ "open": "09:00", "close": "19:00" }],
+      "timezone": "Europe/London"
+    },
+    "availability": "public",
+    "capacityHint": "small",
+    "multiFaith": false,
+    "sectNotes": null,
+    "verified": false,
+    "source": "seed",
+    "ownerId": "admin",
+    "images": [],
+    "reviews": [],
+    "createdAt": "2025-09-14T07:20:00Z",
+    "updatedAt": "2025-09-14T07:20:00Z",
+    "dedupeKey": "southallmarketprayerhall_51.5097_-0.3763"
+  },
+  {
+    "name": "Hanwell Community Centre Prayer Room",
+    "spotType": "community_centre",
+    "location": {
+      "lat": 51.5169,
+      "lng": -0.3421,
+      "geopoint": "GeoPoint(51.5169,-0.3421)"
+    },
+    "address": "Westcott Cres, Hanwell W7",
+    "directions": "Ground floor, Room A2",
+    "googleMapsUrl": "https://maps.google.com/?q=Hanwell+Community+Centre+Prayer+Room",
+    "googlePlaceId": null,
+    "amenities": {
+      "wudu": false,
+      "women": true,
+      "toilets": true,
+      "disabilityAccess": true
+    },
+    "openingHours": {
+      "mon": [{ "open": "09:00", "close": "21:00" }],
+      "fri": [{ "open": "09:00", "close": "22:30" }],
+      "sun": [{ "open": "10:00", "close": "20:00" }],
       "timezone": "Europe/London"
     },
     "availability": "customers_only",
@@ -979,64 +139,49 @@
     "multiFaith": true,
     "sectNotes": null,
     "verified": false,
-    "source": "user",
+    "source": "seed",
     "ownerId": "admin",
     "images": [],
     "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "theoliveroom_51.546239_-0.146361"
+    "createdAt": "2025-09-14T07:20:00Z",
+    "updatedAt": "2025-09-14T07:20:00Z",
+    "dedupeKey": "hanwellcommunitycentre_51.5169_-0.3421"
   },
   {
-    "name": "Noor Prayer Hall",
-    "spotType": "cafe",
+    "name": "South Harrow Underground Prayer Space",
+    "spotType": "station",
     "location": {
-      "lat": 51.470503,
-      "lng": -0.132941,
-      "geopoint": "GeoPoint(51.470503,-0.132941)"
+      "lat": 51.5643,
+      "lng": -0.3529,
+      "geopoint": "GeoPoint(51.5643,-0.3529)"
     },
-    "address": "96 North Road, London",
-    "directions": "Next to Costa, Level 2",
-    "googleMapsUrl": "https://maps.google.com/?q=Noor+Prayer+Hall",
+    "address": "Northolt Rd, South Harrow HA2",
+    "directions": "Basement level near ticket hall",
+    "googleMapsUrl": "https://maps.google.com/?q=South+Harrow+Underground+Prayer+Space",
     "googlePlaceId": null,
     "amenities": {
       "wudu": false,
-      "women": true,
-      "toilets": false,
-      "disabilityAccess": true
+      "women": false,
+      "toilets": true,
+      "disabilityAccess": false
     },
     "openingHours": {
-      "mon": [
-        {
-          "open": "10:00",
-          "close": "22:00"
-        }
-      ],
-      "fri": [
-        {
-          "open": "10:00",
-          "close": "23:30"
-        }
-      ],
-      "sun": [
-        {
-          "open": "11:00",
-          "close": "21:00"
-        }
-      ],
+      "mon": [{ "open": "06:00", "close": "23:00" }],
+      "fri": [{ "open": "06:00", "close": "23:30" }],
+      "sun": [{ "open": "07:00", "close": "22:00" }],
       "timezone": "Europe/London"
     },
-    "availability": "customers_only",
+    "availability": "public",
     "capacityHint": "small",
-    "multiFaith": false,
+    "multiFaith": true,
     "sectNotes": null,
     "verified": false,
-    "source": "user",
+    "source": "seed",
     "ownerId": "admin",
     "images": [],
     "reviews": [],
-    "createdAt": "2025-09-09T13:36:58.276019Z",
-    "updatedAt": "2025-09-09T13:36:58.276019Z",
-    "dedupeKey": "noorprayerhall_51.470503_-0.132941"
+    "createdAt": "2025-09-14T07:20:00Z",
+    "updatedAt": "2025-09-14T07:20:00Z",
+    "dedupeKey": "southharrowunderground_51.5643_-0.3529"
   }
 ]

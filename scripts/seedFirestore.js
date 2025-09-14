@@ -27,16 +27,9 @@ const seedFirestore = async () => {
 
     // Check existing data
     const spotsRef = db.collection("spots");
-    const existingSpots = await spotsRef.get();
 
-    if (existingSpots.size > 0) {
-      console.log(`📍 Database already contains ${existingSpots.size} spots.`);
-      console.log("❌ Skipping seed (delete existing spots first if needed)");
-      return;
-    }
-
-    // Batch write
-    console.log("📝 Writing new spots...");
+    // Batch write to db by appending
+    console.log("📝 Appending new spots...");
     const batch = db.batch();
 
     spotsData.forEach((spot) => {
