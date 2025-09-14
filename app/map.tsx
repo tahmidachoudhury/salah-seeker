@@ -6,6 +6,8 @@ import { db } from "@/services/firebase";
 import { PrayerSpot } from "@/types/PrayerSpot";
 import { router } from "expo-router";
 import { getDistanceMiles } from "@/utils/geo";
+import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
+import { Text } from "@/components/Themed";
 
 //mapbox public key
 MapboxGL.setAccessToken(
@@ -56,6 +58,11 @@ export default function MapScreen() {
     lat: number;
   } | null>(null); // made this an object for readability
 
+  const [nextPrayer, setNextPrayer] = useState<{
+    name: string;
+    formatted: string | null;
+  } | null>(null);
+
   // retrieves user location
   useEffect(() => {
     const getLocation = async () => {
@@ -88,6 +95,17 @@ export default function MapScreen() {
     })();
   }, [userCoords]);
 
+  // fetch the next prayer for users to see
+  useEffect(() => {
+    if (!userCoords) return;
+
+    (async () => {
+      const timings = await fetchPrayerTimes(userCoords.lat, userCoords.lng);
+      const next = getNextPrayer(timings);
+      setNextPrayer(next);
+    })();
+  }, [userCoords]);
+
   return (
     <View style={styles.container}>
       <MapboxGL.MapView
@@ -114,12 +132,20 @@ export default function MapScreen() {
               coordinate={[spot.location.lng, spot.location.lat]}
               onSelected={() => router.push(`/listing-detail?id=${spot.id}`)}
             >
-              {/* I need this view here or else rnmaps complains as its typed to have a child element */}
               <View />
             </MapboxGL.PointAnnotation>
           ) : null
         )}
       </MapboxGL.MapView>
+      <View style={styles.prayerBanner}>
+        {nextPrayer ? (
+          <Text>
+            Next prayer: {nextPrayer.name} ({nextPrayer.formatted})
+          </Text>
+        ) : (
+          <Text>Loading prayer times...</Text>
+        )}
+      </View>
     </View>
   );
 }
@@ -127,4 +153,17 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { flex: 1 },
+  prayerBanner: {
+    position: "absolute",
+    top: 40,
+    left: 20,
+    right: 20,
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
 });
