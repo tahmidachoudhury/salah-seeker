@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import { PrayerSpot } from "@/types/PrayerSpot";
 import { router } from "expo-router";
+import { getDistanceMiles } from "@/utils/geo";
 
 //mapbox public key
 MapboxGL.setAccessToken(
@@ -21,32 +22,41 @@ type SpotMarker = {
   };
 };
 
+const DEFAULT_RADIUS = 5; // miles between the user and the furthest possible spot: currently set at 5
+
+export const getNearbySpots = async (
+  userLat: number,
+  userLng: number,
+  radiusMiles = DEFAULT_RADIUS
+) => {
+  const snapshot = await getDocs(collection(db, "spots"));
+  const allSpots: any[] = [];
+  snapshot.forEach((doc) => allSpots.push(doc.data()));
+
+  // filters all the spots and only returns the closest
+  const nearbySpots = allSpots.filter((spot) => {
+    if (!spot.location?.lat || !spot.location?.lng) return false;
+    const distance = getDistanceMiles(
+      userLat,
+      userLng,
+      spot.location.lat,
+      spot.location.lng
+    );
+    return distance <= radiusMiles;
+  });
+
+  return nearbySpots;
+};
+
 export default function MapScreen() {
-  //fetching prayer spots test
   const [spots, setSpots] = useState<SpotMarker[]>([]);
 
-  // fetches prayerspots from "spots" table.
-  //types the spot to temporary SpotMarker interface
-  useEffect(() => {
-    const fetchSpots = async () => {
-      try {
-        const snap = await getDocs(collection(db, "spots"));
-        const rawSpots = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as SpotMarker[];
+  const [userCoords, setUserCoords] = useState<{
+    lng: number;
+    lat: number;
+  } | null>(null); // made this an object for readability
 
-        setSpots(rawSpots);
-      } catch (err) {
-        console.error("❌ Error fetching spots from Firestore:", err);
-      }
-    };
-
-    fetchSpots();
-  }, []);
-
-  const [coords, setCoords] = useState<[number, number] | null>(null);
-
+  // retrieves user location
   useEffect(() => {
     const getLocation = async () => {
       if (Platform.OS === "android") {
@@ -56,11 +66,27 @@ export default function MapScreen() {
       }
       const location = await MapboxGL.locationManager.getLastKnownLocation();
       if (location) {
-        setCoords([location.coords.longitude, location.coords.latitude]);
+        setUserCoords({
+          lng: location.coords.longitude,
+          lat: location.coords.latitude,
+        });
       }
     };
     getLocation();
   }, []);
+
+  // retrieves the spots closest to the user based on location and default radius
+  useEffect(() => {
+    if (!userCoords) return;
+    (async () => {
+      const spots = await getNearbySpots(
+        userCoords.lat,
+        userCoords.lng,
+        DEFAULT_RADIUS // 5 miles
+      );
+      setSpots(spots);
+    })();
+  }, [userCoords]);
 
   return (
     <View style={styles.container}>
@@ -72,7 +98,9 @@ export default function MapScreen() {
       >
         <MapboxGL.Camera
           zoomLevel={13}
-          centerCoordinate={coords || [-0.1278, 51.5074]} // Fallback to London
+          centerCoordinate={
+            userCoords ? [userCoords.lng, userCoords.lat] : [-0.1278, 51.5074]
+          } // Fallback to London
         />
         <MapboxGL.UserLocation
           visible={true}
