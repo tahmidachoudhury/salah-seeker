@@ -9,6 +9,11 @@ import { getDistanceMiles } from "@/utils/geo";
 import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
 import { Text } from "@/components/Themed";
 
+// ! Currently this componenet serves 3 jobs
+// 1. get user location
+// 2. filter spots closest to user in 5 mile radius
+// 3. fetch the next prayer for users to see as a widget
+
 //mapbox public key
 MapboxGL.setAccessToken(
   "pk.eyJ1IjoidGFobWlkMDEiLCJhIjoiY21laDJkMnJjMDM0bjJrcDZucm1ubDZ5cCJ9.p85LMck0PSQRKa_obWk68w"
@@ -26,6 +31,7 @@ type SpotMarker = {
 
 const DEFAULT_RADIUS = 5; // miles between the user and the furthest possible spot: currently set at 5
 
+//pulls all entries from `spots` table and then filters them based on the radius set above
 export const getNearbySpots = async (
   userLat: number,
   userLng: number,
@@ -95,7 +101,7 @@ export default function MapScreen() {
     })();
   }, [userCoords]);
 
-  // fetch the next prayer for users to see
+  // fetch the next prayer for users to see, based on their location
   useEffect(() => {
     if (!userCoords) return;
 
