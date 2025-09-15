@@ -15,7 +15,7 @@
 - Built `/add-spot.tsx` form
 - Fixed Firestore rules (write access for signed-in users)
 
-### 📅 August 14, 2025
+### 📅 August 13, 2025
 
 - Switched from Mapbox "standard" style (broken on React Native) to custom style with no imports
 - Successfully rendered custom built Mapbox map + user location
@@ -23,3 +23,10 @@
 - Rendered spots on map with `PointAnnotation`
 - Wired markers to navigate to `/listing-detail?id=...`
 - Built `listing-detail.tsx` to fetch and display spot info (name, type, amenities, hours, etc.)
+
+### 📅 August 14, 2025
+
+- Nearby Feed → filtering works client-side (5 miles).
+- Prayer Times API → integrated, showing next prayer with hours/minutes.
+- Qibla Compass → screen renders, arrow rotates.
+  - Bearing calculation correct (~118° for London).
