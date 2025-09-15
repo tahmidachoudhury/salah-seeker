@@ -19,5 +19,5 @@ export default function RootLayout() {
     }, true); // <- second arg = allow in dev mode
   }, []);
 
-  return <Stack />;
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

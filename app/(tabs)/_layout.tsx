@@ -7,26 +7,44 @@ import { Pressable } from "react-native";
 import { House } from "lucide-react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}
-    >
+    <Tabs screenOptions={{ headerShown: true }}>
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <House color={color} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="home" color={color} />
+          ),
         }}
       />
-      <Tabs.Screen name="map" options={{ title: "Explore" }} />
-      <Tabs.Screen name="qibla" options={{ title: "Qibla" }} />
-      <Tabs.Screen name="add-listing" options={{ title: "Contribute" }} />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: "Explore",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="map" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="qibla"
+        options={{
+          title: "Qibla",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="compass" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="add-listing"
+        options={{
+          title: "Contribute",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="plus" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
