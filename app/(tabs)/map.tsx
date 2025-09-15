@@ -15,6 +15,7 @@ import { getDistanceMiles } from "@/utils/geo";
 import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
 import { Text } from "@/components/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import FilterPill from "@/components/FilterPill";
 
 // ! Currently this componenet serves 3 jobs
 // 1. get user location
@@ -71,8 +72,6 @@ export const getNearbySpots = async (
 };
 
 export default function MapScreen() {
-  const [spots, setSpots] = useState<SpotMarker[]>([]);
-
   const [userCoords, setUserCoords] = useState<{
     lng: number;
     lat: number;
@@ -102,6 +101,8 @@ export default function MapScreen() {
     getLocation();
   }, []);
 
+  const [spots, setSpots] = useState<SpotMarker[]>([]);
+
   // retrieves the spots closest to the user based on location and default radius
   useEffect(() => {
     if (!userCoords) return;
@@ -126,10 +127,12 @@ export default function MapScreen() {
     })();
   }, [userCoords]);
 
+  // ?
   const [showWudu, setShowWudu] = useState(false);
   const [showWomen, setShowWomen] = useState(false);
   const [showMasjid, setShowMasjid] = useState(false);
 
+  // these are the spots that are shown on the map based on active filters
   const filteredSpots = useMemo(() => {
     return spots.filter((spot) => {
       if (showWudu && !spot.amenities.wudu) return false;
@@ -139,28 +142,9 @@ export default function MapScreen() {
     });
   }, [spots, showWudu, showWomen, showMasjid]);
 
-  function FilterPill({
-    label,
-    active,
-    onPress,
-  }: {
-    label: string;
-    active: boolean;
-    onPress: () => void;
-  }) {
-    return (
-      <TouchableOpacity
-        style={[styles.pill, active ? styles.pillActive : styles.pillInactive]}
-        onPress={onPress}
-      >
-        {active && <FontAwesome size={12} name="close" />}
-        <Text style={{ color: active ? "#2e4e2c" : "black" }}>{label}</Text>
-      </TouchableOpacity>
-    );
-  }
-
   return (
     <View style={styles.container}>
+      {/* Using custom map with point annotation and zooming into user's location */}
       <MapboxGL.MapView
         style={styles.map}
         styleURL="mapbox://styles/tahmid01/cmfikgi6b004k01quevez8hsu"
@@ -177,6 +161,8 @@ export default function MapScreen() {
           visible={true}
           showsUserHeadingIndicator={true}
         />
+
+        {/* displays spots based on active filters */}
         {filteredSpots.map((spot) =>
           spot.location?.lat && spot.location?.lng ? (
             <MapboxGL.PointAnnotation
@@ -190,6 +176,8 @@ export default function MapScreen() {
           ) : null
         )}
       </MapboxGL.MapView>
+
+      {/* Prayer Time banner to show the next prayer */}
       <View style={styles.prayerBanner}>
         {nextPrayer ? (
           <Text>
@@ -199,6 +187,9 @@ export default function MapScreen() {
           <Text>Loading prayer times...</Text>
         )}
       </View>
+
+      {/* FilterPill component for toggling Women, Wudu, Masjid */}
+      {/* I should add a currently open filter to only return open prayer rooms!! */}
       <View style={styles.filterBar}>
         <FilterPill
           label="Wudu"
@@ -243,20 +234,5 @@ const styles = StyleSheet.create({
     left: 20,
     justifyContent: "center",
     marginVertical: 10,
-  },
-  pill: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: "8",
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 20,
-    marginHorizontal: 5,
-  },
-  pillActive: {
-    backgroundColor: "#a8d38d",
-  },
-  pillInactive: {
-    backgroundColor: "#e0e0e0",
   },
 });
