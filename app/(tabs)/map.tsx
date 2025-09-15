@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { View, StyleSheet, PermissionsAndroid, Platform } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  PermissionsAndroid,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import MapboxGL from "@rnmapbox/maps";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase";
@@ -8,6 +14,7 @@ import { router } from "expo-router";
 import { getDistanceMiles } from "@/utils/geo";
 import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
 import { Text } from "@/components/Themed";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 // ! Currently this componenet serves 3 jobs
 // 1. get user location
@@ -27,6 +34,13 @@ type SpotMarker = {
     lat: number;
     lng: number;
   };
+  amenities: {
+    toilets: boolean;
+    women: boolean;
+    wudu: boolean;
+    disabilityAccess: false;
+  };
+  spotType: "masjid" | "prayer_room" | "restaurant" | "cafe";
 };
 
 const DEFAULT_RADIUS = 5; // miles between the user and the furthest possible spot: currently set at 5
@@ -112,6 +126,39 @@ export default function MapScreen() {
     })();
   }, [userCoords]);
 
+  const [showWudu, setShowWudu] = useState(false);
+  const [showWomen, setShowWomen] = useState(false);
+  const [showMasjid, setShowMasjid] = useState(false);
+
+  const filteredSpots = useMemo(() => {
+    return spots.filter((spot) => {
+      if (showWudu && !spot.amenities.wudu) return false;
+      if (showWomen && !spot.amenities.women) return false;
+      if (showMasjid && !(spot.spotType == "masjid")) return false;
+      return true;
+    });
+  }, [spots, showWudu, showWomen, showMasjid]);
+
+  function FilterPill({
+    label,
+    active,
+    onPress,
+  }: {
+    label: string;
+    active: boolean;
+    onPress: () => void;
+  }) {
+    return (
+      <TouchableOpacity
+        style={[styles.pill, active ? styles.pillActive : styles.pillInactive]}
+        onPress={onPress}
+      >
+        {active && <FontAwesome size={12} name="close" />}
+        <Text style={{ color: active ? "#2e4e2c" : "black" }}>{label}</Text>
+      </TouchableOpacity>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <MapboxGL.MapView
@@ -130,7 +177,7 @@ export default function MapScreen() {
           visible={true}
           showsUserHeadingIndicator={true}
         />
-        {spots.map((spot) =>
+        {filteredSpots.map((spot) =>
           spot.location?.lat && spot.location?.lng ? (
             <MapboxGL.PointAnnotation
               key={spot.id}
@@ -152,6 +199,23 @@ export default function MapScreen() {
           <Text>Loading prayer times...</Text>
         )}
       </View>
+      <View style={styles.filterBar}>
+        <FilterPill
+          label="Wudu"
+          active={showWudu}
+          onPress={() => setShowWudu(!showWudu)}
+        />
+        <FilterPill
+          label="Women"
+          active={showWomen}
+          onPress={() => setShowWomen(!showWomen)}
+        />
+        <FilterPill
+          label="Masjid"
+          active={showMasjid}
+          onPress={() => setShowMasjid(!showMasjid)}
+        />
+      </View>
     </View>
   );
 }
@@ -171,5 +235,28 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  filterBar: {
+    flexDirection: "row",
+    position: "absolute",
+    top: 80,
+    left: 20,
+    justifyContent: "center",
+    marginVertical: 10,
+  },
+  pill: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "8",
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    marginHorizontal: 5,
+  },
+  pillActive: {
+    backgroundColor: "#a8d38d",
+  },
+  pillInactive: {
+    backgroundColor: "#e0e0e0",
   },
 });
