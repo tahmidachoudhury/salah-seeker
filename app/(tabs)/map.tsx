@@ -17,10 +17,11 @@ import { Text } from "@/components/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FilterPill from "@/components/FilterPill";
 
-// ! Currently this componenet serves 3 jobs
+// ! Currently this component serves 4 jobs
 // 1. get user location
-// 2. filter spots closest to user in 5 mile radius
+// 2. filter `spots` table to closest to user in 5 mile radius
 // 3. fetch the next prayer for users to see as a widget
+// 4. filter closest spots to active filters (women, wudu, masjid)
 
 //mapbox public key
 MapboxGL.setAccessToken(
