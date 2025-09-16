@@ -16,6 +16,7 @@ import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
 import { Text } from "@/components/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FilterPill from "@/components/FilterPill";
+import { getUserLocation } from "@/utils/getUserLocation";
 
 // ! Currently this component serves 4 jobs
 // 1. get user location
@@ -30,7 +31,7 @@ MapboxGL.setAccessToken(
 
 // Temporary, lean type for prayer spot just to test marker on map
 type SpotMarker = {
-  id: string;
+  id: string; // Firebase document ID - always present from doc.id
   name: string;
   location: {
     lat: number;
@@ -40,9 +41,12 @@ type SpotMarker = {
     toilets: boolean;
     women: boolean;
     wudu: boolean;
-    disabilityAccess: false;
+    disabilityAccess: boolean;
   };
   spotType: "masjid" | "prayer_room" | "restaurant" | "cafe";
+  address?: string; // added from Nominatim
+  googleMapsUrl?: string; // added for "Get Directions"
+  verified?: boolean;
 };
 
 const DEFAULT_RADIUS = 5; // miles between the user and the furthest possible spot: currently set at 5
@@ -54,8 +58,16 @@ export const getNearbySpots = async (
   radiusMiles = DEFAULT_RADIUS
 ) => {
   const snapshot = await getDocs(collection(db, "spots"));
-  const allSpots: any[] = [];
-  snapshot.forEach((doc) => allSpots.push(doc.data()));
+
+  const allSpots: SpotMarker[] = snapshot.docs.map((doc) => {
+    const data = doc.data();
+    // Remove any existing id field from document data to avoid conflicts
+    const { id: _, ...cleanData } = data;
+    return {
+      id: doc.id, // ✅ guaranteed ID from metadata
+      ...cleanData,
+    } as SpotMarker;
+  });
 
   // filters all the spots and only returns the closest
   const nearbySpots = allSpots.filter((spot) => {
@@ -78,25 +90,12 @@ export default function MapScreen() {
     lat: number;
   } | null>(null); // made this an object for readability
 
-  const [nextPrayer, setNextPrayer] = useState<{
-    name: string;
-    formatted: string | null;
-  } | null>(null);
-
   // retrieves user location
   useEffect(() => {
     const getLocation = async () => {
-      if (Platform.OS === "android") {
-        await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-        );
-      }
-      const location = await MapboxGL.locationManager.getLastKnownLocation();
-      if (location) {
-        setUserCoords({
-          lng: location.coords.longitude,
-          lat: location.coords.latitude,
-        });
+      const coords = await getUserLocation();
+      if (coords) {
+        setUserCoords(coords);
       }
     };
     getLocation();
@@ -116,6 +115,11 @@ export default function MapScreen() {
       setSpots(spots);
     })();
   }, [userCoords]);
+
+  const [nextPrayer, setNextPrayer] = useState<{
+    name: string;
+    formatted: string | null;
+  } | null>(null);
 
   // fetch the next prayer for users to see, based on their location
   useEffect(() => {

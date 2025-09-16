@@ -39,7 +39,7 @@ const seedFirestore = async () => {
         createdAt: new Date(),
         createdBy: "seed_script",
         updatedAt: new Date(),
-        id: docRef.id,
+        // Note: id is automatically available as doc.id, no need to store it as a field
       });
       console.log(`  📍 Queued: ${spot.name}`);
     });

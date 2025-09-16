@@ -13,14 +13,21 @@ import {
 import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import LocationPicker from "@/components/LocationPicker";
 // import { auth } from "@/services/firebase";
+
+//TODO: we still need createdBy, directions, opening hours, availability, capacityHint, multiFaith, sectNotes, source, ownerId, createdAt, updatedAt
 
 export const spotSchema = z.object({
   name: z.string().min(1, "Name is required"),
   spotType: z.enum(["masjid", "prayer_room", "restaurant", "cafe"]),
   address: z.string().min(1, "Address is required"),
-  lat: z.number(),
-  lng: z.number(),
+  lat: z.number().refine((val) => val !== 0, {
+    message: "Please select a location",
+  }),
+  lng: z.number().refine((val) => val !== 0, {
+    message: "Please select a location",
+  }),
   amenities: z.object({
     wudu: z.boolean(),
     women: z.boolean(),
@@ -42,6 +49,7 @@ export default function AddListing() {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SpotForm>({
     resolver: zodResolver(spotSchema),
@@ -83,6 +91,7 @@ export default function AddListing() {
       });
 
       console.log("🎉 Spot added with ID:", docRef.id);
+      router.push(`/listing-detail?id=${docRef.id}`);
     } catch (err) {
       console.log("❌ Firestore addDoc failed:", err);
     }
@@ -125,56 +134,20 @@ export default function AddListing() {
       )}
 
       {/* Address */}
-      <Text style={styles.label}>Address *</Text>
-      <Controller
-        control={control}
-        name="address"
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            placeholder="123 Example St, London"
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
-      />
-      {errors.address && (
-        <Text style={styles.error}>{errors.address.message}</Text>
-      )}
-
-      {/* Latitude */}
-      <Text style={styles.label}>Latitude *</Text>
       <Controller
         control={control}
         name="lat"
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            placeholder="51.5074"
-            value={value?.toString()}
-            keyboardType="numeric"
-            onChangeText={(text) => onChange(parseFloat(text))}
+        render={() => (
+          <LocationPicker
+            onLocationSelect={({ lat, lng, address, googleMapsUrl }) => {
+              setValue("lat", lat);
+              setValue("lng", lng);
+              setValue("address", address);
+              setValue("googleMapsUrl", googleMapsUrl);
+            }}
           />
         )}
       />
-      {errors.lat && <Text style={styles.error}>{errors.lat.message}</Text>}
-
-      {/* Longitude */}
-      <Text style={styles.label}>Longitude *</Text>
-      <Controller
-        control={control}
-        name="lng"
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            placeholder="-0.1278"
-            value={value?.toString()}
-            keyboardType="numeric"
-            onChangeText={(text) => onChange(parseFloat(text))}
-          />
-        )}
-      />
-      {errors.lng && <Text style={styles.error}>{errors.lng.message}</Text>}
 
       {/* Amenities */}
       <Text style={styles.label}>Amenities</Text>

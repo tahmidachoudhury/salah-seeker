@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { PermissionsAndroid, Platform } from "react-native";
 import { getQiblaBearing } from "@/utils/getQiblaBearing";
 import { Text, View } from "@/components/Themed";
+import { getUserLocation } from "@/utils/getUserLocation";
 
 export default function QiblaScreen() {
   const [heading, setHeading] = useState(0);
@@ -26,17 +27,9 @@ export default function QiblaScreen() {
   // user location
   useEffect(() => {
     const getLocation = async () => {
-      if (Platform.OS === "android") {
-        await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-        );
-      }
-      const location = await MapboxGL.locationManager.getLastKnownLocation();
-      if (location) {
-        setUserCoords({
-          lng: location.coords.longitude,
-          lat: location.coords.latitude,
-        });
+      const coords = await getUserLocation();
+      if (coords) {
+        setUserCoords(coords);
       }
     };
     getLocation();

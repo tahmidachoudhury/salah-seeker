@@ -5,14 +5,15 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
+  Button,
+  Linking,
 } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/services/firebase";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();
-  const router = useRouter();
   const [spot, setSpot] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -85,6 +86,19 @@ export default function SpotDetail() {
           )}
         </>
       )}
+
+      <View style={{ marginTop: 12 }}>
+        <Button
+          title="Get Directions"
+          onPress={() => {
+            if (spot.googleMapsUrl) {
+              Linking.openURL(spot.googleMapsUrl);
+            } else {
+              console.warn("No Google Maps link available");
+            }
+          }}
+        />
+      </View>
     </ScrollView>
   );
 }
