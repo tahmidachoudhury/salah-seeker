@@ -103,3 +103,7 @@ lib/
 ```
 
 - Added verification logic for admin users only to toggle
+- Added Firebase Storage for images to be uploaded
+- Images can be added by users on `add-listing/`
+- Images can be added by users on `listing-detail/`
+- Thumbnails can be viewed on `listing-detail/{id}`
