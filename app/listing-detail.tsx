@@ -7,15 +7,21 @@ import {
   StyleSheet,
   Button,
   Linking,
+  Switch,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useIsAdmin } from "@/lib/admin";
+import { setSpotVerified } from "@/modules/spots/setSpotVerified";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();
   const [spot, setSpot] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { isAdmin, loading: adminLoading } = useIsAdmin();
+
+  console.log("User is an admin:", isAdmin);
 
   useEffect(() => {
     const fetchSpot = async () => {
@@ -55,9 +61,45 @@ export default function SpotDetail() {
     );
   }
 
+  const onToggleVerified = async (id: string, v: boolean) => {
+    if (typeof id !== "string") {
+      console.warn("Missing spot id");
+      return;
+    }
+
+    // Optimistic update: immediately update the spot object
+    setSpot((prev: any) => {
+      if (!prev || typeof prev !== "object") return prev;
+      return { ...prev, verified: v };
+    });
+
+    try {
+      await setSpotVerified(id, v); // Firestore write
+    } catch (e) {
+      // Revert on failure
+      setSpot((prev: any) => {
+        if (!prev || typeof prev !== "object") return prev;
+        return { ...prev, verified: !v };
+      });
+      console.error("verify toggle failed:", e);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{spot.name}</Text>
+      <View>
+        <Text>Verified: {spot.verified ? "✅" : "❌"}</Text>
+        {isAdmin &&
+          (adminLoading ? (
+            <ActivityIndicator size="small" />
+          ) : (
+            <Switch
+              value={!!spot.verified}
+              onValueChange={(v) => onToggleVerified(spot.id, v)}
+            />
+          ))}
+      </View>
       <Text>Type: {spot.spotType}</Text>
       <Text>Address: {spot.address}</Text>
       <Text>Availability: {spot.availability}</Text>
