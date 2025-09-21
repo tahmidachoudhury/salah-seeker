@@ -14,14 +14,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useIsAdmin } from "@/lib/admin";
 import { setSpotVerified } from "@/modules/spots/setSpotVerified";
+import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
+import SpotImages from "@/modules/spots/ViewSpotImages";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();
   const [spot, setSpot] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const { isAdmin, loading: adminLoading } = useIsAdmin();
-
-  console.log("User is an admin:", isAdmin);
 
   useEffect(() => {
     const fetchSpot = async () => {
@@ -87,6 +87,8 @@ export default function SpotDetail() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <SpotImages images={spot.images ?? []} />
+
       <Text style={styles.title}>{spot.name}</Text>
       <View>
         <Text>Verified: {spot.verified ? "✅" : "❌"}</Text>
@@ -129,7 +131,7 @@ export default function SpotDetail() {
         </>
       )}
 
-      <View style={{ marginTop: 12 }}>
+      <View style={{ marginVertical: 12 }}>
         <Button
           title="Get Directions"
           onPress={() => {
@@ -141,6 +143,8 @@ export default function SpotDetail() {
           }}
         />
       </View>
+
+      <SpotImagesUploader spotId={spot.id} />
     </ScrollView>
   );
 }

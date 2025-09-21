@@ -14,6 +14,7 @@ import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LocationPicker from "@/components/LocationPicker";
+import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
 // import { auth } from "@/services/firebase";
 
 //TODO: we still need createdBy, directions, opening hours, availability, capacityHint, multiFaith, sectNotes, source, ownerId, createdAt, updatedAt
@@ -45,6 +46,7 @@ type SpotForm = z.infer<typeof spotSchema>;
 
 export default function AddListing() {
   const router = useRouter();
+  const [createdSpotId, setCreatedSpotId] = useState<string | null>(null);
 
   const {
     control,
@@ -91,7 +93,7 @@ export default function AddListing() {
       });
 
       console.log("🎉 Spot added with ID:", docRef.id);
-      router.push(`/listing-detail?id=${docRef.id}`);
+      setCreatedSpotId(docRef.id);
     } catch (err) {
       //TODO: add error handling or dont let unauth users see the form!!
       console.log("❌ Firestore addDoc failed:", err);
@@ -177,6 +179,8 @@ export default function AddListing() {
 
       {/* Submit */}
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+
+      {createdSpotId && <SpotImagesUploader spotId={createdSpotId} />}
     </View>
   );
 }
