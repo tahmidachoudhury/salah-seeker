@@ -12,6 +12,10 @@ type Props = {
   }) => void;
 };
 
+const DEMO_MODE = process.env.EXPO_PUBLIC_DEMO_MODE === "true";
+const DEMO_LAT = Number(process.env.EXPO_PUBLIC_DEMO_LAT);
+const DEMO_LNG = Number(process.env.EXPO_PUBLIC_DEMO_LNG);
+
 export default function LocationPicker({ onLocationSelect }: Props) {
   const [coords, setCoords] = useState<[number, number]>([0, 0]); // [lng, lat]
   const [loading, setLoading] = useState(false);
@@ -21,7 +25,9 @@ export default function LocationPicker({ onLocationSelect }: Props) {
     const getLocation = async () => {
       const coordinates = await getUserLocation();
       if (coordinates) {
-        const userCoords: [number, number] = [coordinates.lng, coordinates.lat];
+        const userCoords: [number, number] = DEMO_MODE
+          ? [DEMO_LNG, DEMO_LAT]
+          : [coordinates.lng, coordinates.lat];
         setCoords(userCoords);
       }
     };

@@ -83,11 +83,23 @@ export const getNearbySpots = async (
   return nearbySpots;
 };
 
+const DEMO_MODE = process.env.EXPO_PUBLIC_DEMO_MODE === "true";
+const DEMO_LAT = Number(process.env.EXPO_PUBLIC_DEMO_LAT);
+const DEMO_LNG = Number(process.env.EXPO_PUBLIC_DEMO_LNG);
+
 export default function MapScreen() {
   const [userCoords, setUserCoords] = useState<{
     lng: number;
     lat: number;
   } | null>(null); // made this an object for readability
+  const [spots, setSpots] = useState<SpotMarker[]>([]);
+  const [nextPrayer, setNextPrayer] = useState<{
+    name: string;
+    formatted: string | null;
+  } | null>(null);
+  const [showWudu, setShowWudu] = useState(false);
+  const [showWomen, setShowWomen] = useState(false);
+  const [showMasjid, setShowMasjid] = useState(false);
 
   // retrieves user location
   useEffect(() => {
@@ -100,40 +112,32 @@ export default function MapScreen() {
     getLocation();
   }, []);
 
-  const [spots, setSpots] = useState<SpotMarker[]>([]);
+  const effectiveLat = DEMO_MODE ? DEMO_LAT : userCoords?.lat ?? 51.5074;
+  const effectiveLng = DEMO_MODE ? DEMO_LNG : userCoords?.lng ?? -0.1278;
 
   // retrieves the spots closest to the user based on location and default radius
   useEffect(() => {
     if (!userCoords) return;
     (async () => {
       const spots = await getNearbySpots(
-        userCoords.lat,
-        userCoords.lng,
+        effectiveLat,
+        effectiveLng,
         DEFAULT_RADIUS // 5 miles
       );
       setSpots(spots);
     })();
   }, [userCoords]);
 
-  const [nextPrayer, setNextPrayer] = useState<{
-    name: string;
-    formatted: string | null;
-  } | null>(null);
-
   // fetch the next prayer for users to see, based on their location
   useEffect(() => {
     if (!userCoords) return;
 
     (async () => {
-      const timings = await fetchPrayerTimes(userCoords.lat, userCoords.lng);
+      const timings = await fetchPrayerTimes(effectiveLat, effectiveLng);
       const next = getNextPrayer(timings);
       setNextPrayer(next);
     })();
   }, [userCoords]);
-
-  const [showWudu, setShowWudu] = useState(false);
-  const [showWomen, setShowWomen] = useState(false);
-  const [showMasjid, setShowMasjid] = useState(false);
 
   // these are the spots that are shown on the map based on active filters
   const filteredSpots = useMemo(() => {
@@ -157,11 +161,11 @@ export default function MapScreen() {
         <MapboxGL.Camera
           zoomLevel={13}
           centerCoordinate={
-            userCoords ? [userCoords.lng, userCoords.lat] : [-0.1278, 51.5074]
+            userCoords ? [effectiveLng, effectiveLat] : [-0.1278, 51.5074]
           } // Fallback to London
         />
         <MapboxGL.UserLocation
-          visible={true}
+          visible={!DEMO_MODE}
           showsUserHeadingIndicator={true}
         />
 

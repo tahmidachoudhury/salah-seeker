@@ -107,3 +107,10 @@ lib/
 - Images can be added by users on `add-listing/`
 - Images can be added by users on `listing-detail/`
 - Thumbnails can be viewed on `listing-detail/{id}`
+- Added demo flag in env file which is clean and one-line reversible.
+
+```
+EXPO_PUBLIC_DEMO_MODE=true
+EXPO_PUBLIC_DEMO_LAT=51.5074
+EXPO_PUBLIC_DEMO_LNG=-0.1278
+```
