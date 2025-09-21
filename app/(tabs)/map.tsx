@@ -8,15 +8,15 @@ import {
 } from "react-native";
 import MapboxGL from "@rnmapbox/maps";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/services/firebase";
-import { PrayerSpot } from "@/types/PrayerSpot";
+import { db } from "@/lib/firebase";
+import { PrayerSpot } from "@/modules/spots/PrayerSpot";
 import { router } from "expo-router";
 import { getDistanceMiles } from "@/utils/geo";
-import { fetchPrayerTimes, getNextPrayer } from "@/utils/prayerTimes";
+import { fetchPrayerTimes, getNextPrayer } from "@/lib/prayerTimes";
 import { Text } from "@/components/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FilterPill from "@/components/FilterPill";
-import { getUserLocation } from "@/utils/getUserLocation";
+import { getUserLocation } from "@/lib/getUserLocation";
 
 // ! Currently this component serves 3 jobs
 // 1. filter `spots` table to closest to user in 5 mile radius

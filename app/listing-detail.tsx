@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/services/firebase";
+import { db } from "@/lib/firebase";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();

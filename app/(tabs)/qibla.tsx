@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { PermissionsAndroid, Platform } from "react-native";
 import { getQiblaBearing } from "@/utils/getQiblaBearing";
 import { Text, View } from "@/components/Themed";
-import { getUserLocation } from "@/utils/getUserLocation";
+import { getUserLocation } from "@/lib/getUserLocation";
 
 export default function QiblaScreen() {
   const [heading, setHeading] = useState(0);

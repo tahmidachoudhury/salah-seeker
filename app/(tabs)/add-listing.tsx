@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/Themed";
-import { db } from "@/services/firebase";
+import { db } from "@/lib/firebase";
 import { useRouter } from "expo-router";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";

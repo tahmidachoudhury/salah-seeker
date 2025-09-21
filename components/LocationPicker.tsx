@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MapboxGL from "@rnmapbox/maps";
 import { View, ActivityIndicator, Text } from "react-native";
-import { getUserLocation } from "@/utils/getUserLocation";
+import { getUserLocation } from "@/lib/getUserLocation";
 
 type Props = {
   onLocationSelect: (data: {
