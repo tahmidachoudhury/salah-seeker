@@ -93,6 +93,7 @@ export default function AddListing() {
       console.log("🎉 Spot added with ID:", docRef.id);
       router.push(`/listing-detail?id=${docRef.id}`);
     } catch (err) {
+      //TODO: add error handling or dont let unauth users see the form!!
       console.log("❌ Firestore addDoc failed:", err);
     }
   };
