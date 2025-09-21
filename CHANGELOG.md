@@ -80,3 +80,26 @@ export const getUserLocation = async () => {
   }
 };
 ```
+
+### 📅 August 21, 2025
+
+- Organised folder structure
+
+```
+utils/
+├── geo.ts
+└── getQiblaDirection.ts
+
+modules/
+    spots/
+    ├── PrayerSpot.ts
+    └── setSpotVerified.ts
+
+lib/
+├── admin.ts
+├── firebase.ts
+├── getUserLocation.ts
+└── prayerTimes.ts
+```
+
+- Added verification logic for admin users only to toggle
