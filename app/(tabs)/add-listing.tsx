@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/Themed";
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { useRouter } from "expo-router";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
@@ -15,9 +15,8 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LocationPicker from "@/components/LocationPicker";
 import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
-// import { auth } from "@/services/firebase";
 
-//TODO: we still need createdBy, directions, opening hours, availability, capacityHint, multiFaith, sectNotes, source, ownerId, createdAt, updatedAt
+//TODO: we still need directions, opening hours, availability, capacityHint, multiFaith, sectNotes, updatedAt
 
 export const spotSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -79,6 +78,10 @@ export default function AddListing() {
   type AmenityKey = (typeof amenityKeys)[number];
 
   const onSubmit = async (data: SpotForm) => {
+    if (!auth.currentUser) {
+      console.log("❌ No authenticated user");
+      return;
+    }
     console.log("✅ Form passed validation:", data);
     try {
       const docRef = await addDoc(collection(db, "spots"), {
@@ -90,6 +93,8 @@ export default function AddListing() {
         },
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
+        ownerID: auth.currentUser?.uid,
+        source: "user",
       });
 
       console.log("🎉 Spot added with ID:", docRef.id);
@@ -117,7 +122,6 @@ export default function AddListing() {
         )}
       />
       {errors.name && <Text style={styles.error}>{errors.name.message}</Text>}
-
       {/* Spot Type */}
       <Text style={styles.label}>Spot Type *</Text>
       <Controller
@@ -135,7 +139,7 @@ export default function AddListing() {
       {errors.spotType && (
         <Text style={styles.error}>{errors.spotType.message}</Text>
       )}
-
+      <Text style={styles.label}>Location</Text>
       {/* Address */}
       <Controller
         control={control}
@@ -151,7 +155,6 @@ export default function AddListing() {
           />
         )}
       />
-
       {/* Amenities */}
       <Text style={styles.label}>Amenities</Text>
       <View style={styles.amenitiesRow}>
@@ -179,7 +182,6 @@ export default function AddListing() {
 
       {/* Submit */}
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-
       {createdSpotId && <SpotImagesUploader spotId={createdSpotId} />}
     </View>
   );

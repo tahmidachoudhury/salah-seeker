@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { useIsAdmin } from "@/lib/admin";
 import { setSpotVerified } from "@/modules/spots/setSpotVerified";
 import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
@@ -106,7 +106,7 @@ export default function SpotDetail() {
       <Text>Address: {spot.address}</Text>
       <Text>Availability: {spot.availability}</Text>
 
-      <View style={styles.amenities}>
+      <View>
         <Text style={styles.subtitle}>Amenities</Text>
         <Text>Wudu: {spot.amenities?.wudu ? "✅" : "❌"}</Text>
         <Text>Women’s Area: {spot.amenities?.women ? "✅" : "❌"}</Text>
@@ -129,6 +129,12 @@ export default function SpotDetail() {
               : null
           )}
         </>
+      )}
+
+      {spot.ownerID && (
+        <View>
+          <Text style={styles.subtitle}>Created by: {spot.ownerID}</Text>
+        </View>
       )}
 
       <View style={{ marginVertical: 12 }}>
@@ -154,5 +160,4 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: "center", alignItems: "center" },
   title: { fontSize: 22, fontWeight: "bold", marginBottom: 10 },
   subtitle: { marginTop: 10, fontWeight: "600" },
-  amenities: { marginTop: 15 },
 });

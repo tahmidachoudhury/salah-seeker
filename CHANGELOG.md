@@ -114,3 +114,7 @@ EXPO_PUBLIC_DEMO_MODE=true
 EXPO_PUBLIC_DEMO_LAT=51.5074
 EXPO_PUBLIC_DEMO_LNG=-0.1278
 ```
+
+### 📅 August 23, 2025
+
+- Added ownerID to listings to map users to their listings
