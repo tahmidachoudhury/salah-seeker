@@ -10,11 +10,23 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
+    // Validate inputs
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    if (email.indexOf("@") === -1) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
       router.replace("/add-listing"); // Navigate to the map screen after login
     } catch (err: any) {
-      setError(err.message);
+      console.error("Login error:", err);
+      setError(err.message || "An error occurred during login");
     }
   };
 

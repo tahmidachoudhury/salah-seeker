@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  Text,
+  StyleSheet,
+  Pressable,
+} from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { router } from "expo-router";
@@ -36,6 +43,12 @@ export default function Login() {
       />
       <Button title="Login" onPress={handleLogin} />
       {error ? <Text style={styles.error}>{error}</Text> : null}
+
+      <Pressable onPress={() => router.replace("/sign-up")}>
+        <Text style={{ marginTop: 12, color: "blue", textAlign: "center" }}>
+          Don’t have an account? Sign up here
+        </Text>
+      </Pressable>
     </View>
   );
 }
