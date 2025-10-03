@@ -1,3 +1,25 @@
+# Data Model for Users and Listings
+
+> Created: 03.10.25
+
+> Updated: 03.10.25
+
+## User Interface
+
+```ts
+export type User = {
+  id: string;
+  displayName: string;
+  email: string;
+  joinedAt: number;
+};
+```
+
+This is the current User Interface, minimal for quick deployment.
+
+## Listing Interface
+
+```ts
 export type PrayerSpot = {
   name: string;
   spotType: "masjid" | "prayer_room" | "restaurant" | "cafe";
@@ -39,10 +61,6 @@ export type PrayerSpot = {
   updatedAt: string;
   dedupeKey: string;
 };
+```
 
-export type User = {
-  id: string;
-  displayName: string;
-  email: string;
-  joinedAt: number;
-};
+This is the original plan for the listing interface. It is very verbose, the version used during MVP is very minimal and I have been slowly adding more and more properties to that version, so it eventually looks like this.
