@@ -18,7 +18,7 @@ export function useIsAdmin() {
         }
 
         // Check if user document exists in admins collection
-        const adminDoc = await getDoc(doc(db, "admins", user.uid));
+        const adminDoc = await getDoc(doc(db, "users", user.uid));
         setIsAdmin(adminDoc.exists());
       } catch (error) {
         console.error("Error checking admin status:", error);
