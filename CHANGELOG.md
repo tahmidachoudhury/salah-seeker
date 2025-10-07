@@ -2,20 +2,20 @@
 
 ---
 
-### 📅 August 8, 2025
+### 📅 September 8, 2025
 
 - Created Expo app with TypeScript
 - Set up Firebase project + config
 - Built login screen with Firebase Auth
 
-### 📅 August 9, 2025
+### 📅 September 9, 2025
 
 - Defined Firestore schema for prayer spots
 - Seeded 20 dummy listings
 - Built `/add-spot.tsx` form
 - Fixed Firestore rules (write access for signed-in users)
 
-### 📅 August 13, 2025
+### 📅 September 13, 2025
 
 - Switched from Mapbox "standard" style (broken on React Native) to custom style with no imports
 - Successfully rendered custom built Mapbox map + user location
@@ -24,14 +24,14 @@
 - Wired markers to navigate to `/listing-detail?id=...`
 - Built `listing-detail.tsx` to fetch and display spot info (name, type, amenities, hours, etc.)
 
-### 📅 August 14, 2025
+### 📅 September 14, 2025
 
 - Nearby Feed → filtering works client-side (5 miles).
 - Prayer Times API → integrated, showing next prayer with hours/minutes.
 - Qibla Compass → screen renders, arrow rotates.
   - Bearing calculation correct (~118° for London).
 
-### 📅 August 15, 2025
+### 📅 September 15, 2025
 
 - Map filters: Added Wudu / Women / Toilets toggles with client-side filtering; derived `filteredSpots` via `useMemo` from `nearbySpots` (5-mile radius).
 - Index dashboard: Built home screen with “Next Prayer” banner + quick links to Map and Qibla.
@@ -43,7 +43,7 @@
 - Save to Firestore: `lat`, `lng`, `address`, and `googleDirectionsUrl` →
   `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`.
 
-### 📅 August 16, 2025
+### 📅 September 16, 2025
 
 - Made `getUserLocation` an exported utility function to organise code
 
@@ -81,7 +81,7 @@ export const getUserLocation = async () => {
 };
 ```
 
-### 📅 August 21, 2025
+### 📅 September 21, 2025
 
 - Organised folder structure
 
@@ -115,6 +115,12 @@ EXPO_PUBLIC_DEMO_LAT=51.5074
 EXPO_PUBLIC_DEMO_LNG=-0.1278
 ```
 
-### 📅 August 23, 2025
+### 📅 September 23, 2025
 
 - Added ownerID to listings to map users to their listings
+
+### 📅 Oct 07, 2025
+
+- Added full CRUD operations to contribute page
+- User can read, update, delete their own listings
+- Firebase rules and permission updated with least privelage
