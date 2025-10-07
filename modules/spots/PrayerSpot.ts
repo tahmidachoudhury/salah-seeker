@@ -46,3 +46,22 @@ export type User = {
   email: string;
   joinedAt: number;
 };
+
+export interface SpotMarker {
+  id: string; // Firebase document ID - always present from doc.id
+  name: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  amenities: {
+    toilets: boolean;
+    women: boolean;
+    wudu: boolean;
+    disabilityAccess: boolean;
+  };
+  spotType: "masjid" | "prayer_room" | "restaurant" | "cafe";
+  address?: string; // added from Nominatim
+  googleMapsUrl?: string; // added for "Get Directions"
+  verified?: boolean;
+}

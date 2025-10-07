@@ -59,7 +59,7 @@ export default function LocationPicker({ onLocationSelect }: Props) {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ height: 200 }}>
       <MapboxGL.MapView style={{ flex: 1 }}>
         <MapboxGL.Camera zoomLevel={14} centerCoordinate={coords} />
 

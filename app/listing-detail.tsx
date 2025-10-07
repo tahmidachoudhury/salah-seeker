@@ -16,6 +16,7 @@ import { useIsAdmin } from "@/lib/admin";
 import { setSpotVerified } from "@/modules/spots/setSpotVerified";
 import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
 import SpotImages from "@/modules/spots/ViewSpotImages";
+import { getSpotOwner } from "@/modules/spots/firestore";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();
