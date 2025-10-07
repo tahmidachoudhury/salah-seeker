@@ -119,7 +119,7 @@ EXPO_PUBLIC_DEMO_LNG=-0.1278
 
 - Added ownerID to listings to map users to their listings
 
-### 📅 Oct 07, 2025
+### 📅 October 07, 2025
 
 - Added full CRUD operations to contribute page
 - User can read, update, delete their own listings
