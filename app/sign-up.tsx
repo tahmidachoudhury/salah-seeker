@@ -11,6 +11,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../lib/firebase"; // make sure you have these exported
 import { router } from "expo-router";
+import { spacing } from "@/components/ui/theme";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -96,13 +97,13 @@ export default function SignUp() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, flex: 1, justifyContent: "center" },
+  container: { padding: spacing.xl, flex: 1, justifyContent: "center" },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
-    marginBottom: 12,
-    padding: 10,
+    marginBottom: spacing.md,
+    padding: spacing.md,
     borderRadius: 8,
   },
-  error: { color: "red", marginTop: 10 },
+  error: { color: "red", marginTop: spacing.md },
 });

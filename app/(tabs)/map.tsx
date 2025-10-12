@@ -17,6 +17,7 @@ import { Text } from "@/components/ui/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FilterPill from "@/components/ui/FilterPill";
 import { getUserLocation } from "@/lib/getUserLocation";
+import { spacing } from "@/components/ui/theme";
 
 // ! Currently this component serves 3 jobs
 // 1. filter `spots` table to closest to user in 5 mile radius
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     backgroundColor: "white",
-    padding: 10,
+    padding: spacing.md,
     borderRadius: 8,
     shadowColor: "#000",
     shadowOpacity: 0.1,
@@ -240,6 +241,6 @@ const styles = StyleSheet.create({
     top: 80,
     left: 20,
     justifyContent: "center",
-    marginVertical: 10,
+    marginVertical: spacing.md,
   },
 });

@@ -5,6 +5,7 @@ import { PermissionsAndroid, Platform } from "react-native";
 import { getQiblaBearing } from "@/utils/getQiblaBearing";
 import { Text, View } from "@/components/ui/Themed";
 import { getUserLocation } from "@/lib/getUserLocation";
+import { spacing } from "@/components/ui/theme";
 
 export default function QiblaScreen() {
   const [heading, setHeading] = useState(0);
@@ -64,8 +65,8 @@ export default function QiblaScreen() {
           style={{
             width: 0,
             height: 0,
-            borderLeftWidth: 15,
-            borderRightWidth: 15,
+            borderLeftWidth: spacing.lg,
+            borderRightWidth: spacing.lg,
             borderBottomWidth: 40,
             borderLeftColor: "transparent",
             borderRightColor: "transparent",

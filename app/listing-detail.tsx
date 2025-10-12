@@ -17,6 +17,7 @@ import { setSpotVerified } from "@/modules/spots/setSpotVerified";
 import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
 import SpotImages from "@/modules/spots/ViewSpotImages";
 import { getSpotOwner } from "@/modules/spots/firestore";
+import { typography } from "@/components/ui/theme";
 
 export default function SpotDetail() {
   const { id } = useLocalSearchParams();
@@ -90,8 +91,8 @@ export default function SpotDetail() {
     <ScrollView contentContainerStyle={styles.container}>
       <SpotImages images={spot.images ?? []} />
 
-      <Text style={styles.title}>{spot.name}</Text>
-      <View>
+      <Text style={typography.title}>{spot.name}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text>Verified: {spot.verified ? "✅" : "❌"}</Text>
         {isAdmin &&
           (adminLoading ? (
@@ -108,7 +109,7 @@ export default function SpotDetail() {
       <Text>Availability: {spot.availability}</Text>
 
       <View>
-        <Text style={styles.subtitle}>Amenities</Text>
+        <Text style={typography.body}>Amenities</Text>
         <Text>Wudu: {spot.amenities?.wudu ? "✅" : "❌"}</Text>
         <Text>Women’s Area: {spot.amenities?.women ? "✅" : "❌"}</Text>
         <Text>Toilets: {spot.amenities?.toilets ? "✅" : "❌"}</Text>
@@ -119,7 +120,7 @@ export default function SpotDetail() {
 
       {spot.openingHours && (
         <>
-          <Text style={styles.subtitle}>Opening Hours</Text>
+          <Text style={typography.body}>Opening Hours</Text>
           {Object.entries(spot.openingHours).map(([day, slots]) =>
             Array.isArray(slots)
               ? slots.map((s: any, idx: number) => (
@@ -134,7 +135,7 @@ export default function SpotDetail() {
 
       {spot.ownerID && (
         <View>
-          <Text style={styles.subtitle}>Created by: {spot.ownerID}</Text>
+          <Text style={typography.body}>Created by: {spot.ownerID}</Text>
         </View>
       )}
 
