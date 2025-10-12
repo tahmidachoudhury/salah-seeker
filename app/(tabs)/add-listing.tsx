@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/ui/Themed";
 import { auth, db } from "@/lib/firebase";
 import { useRouter } from "expo-router";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
@@ -16,7 +16,7 @@ import {
 import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import LocationPicker from "@/components/LocationPicker";
+import LocationPicker from "@/components/ui/LocationPicker";
 import SpotImagesUploader from "@/modules/spots/SpotImagesUploader";
 import {
   deleteListing,
@@ -24,6 +24,9 @@ import {
   updateListing,
 } from "@/modules/spots/firestore";
 import { SpotMarker } from "@/modules/spots/PrayerSpot";
+import PrayerSpotCard from "@/components/ui/PrayerSpotCard";
+import { spacing, typography } from "@/components/ui/theme";
+import Stack from "@/components/ui/Stack";
 
 //TODO: we still need directions, opening hours, availability, capacityHint, multiFaith, sectNotes, updatedAt
 
@@ -128,7 +131,7 @@ export default function AddListing() {
   }, []);
 
   const handleUpdate = async (listing: SpotMarker) => {
-    await updateListing(listing.id, { title: listing.name + " (Updated)" });
+    await updateListing(listing.id, { name: listing.name + " (Updated)" });
     Alert.alert("Updated", "Listing updated successfully");
     loadListings();
   };
@@ -146,98 +149,100 @@ export default function AddListing() {
     ]);
   };
 
-  const renderItem = ({ item }: any) => (
-    <View style={{ padding: 12, borderBottomWidth: 1 }}>
-      <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
-      <View style={{ flexDirection: "row", marginTop: 6, gap: 12 }}>
-        <Pressable onPress={() => handleUpdate(item)}>
-          <Text style={{ color: "blue" }}>Edit</Text>
-        </Pressable>
-        <Pressable onPress={() => handleDelete(item.id)}>
-          <Text style={{ color: "red" }}>Delete</Text>
-        </Pressable>
-      </View>
-    </View>
-  );
-
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      nestedScrollEnabled={true}
+      keyboardShouldPersistTaps="handled"
+    >
       <View>
         {/* Name */}
-        <Text style={styles.label}>Name *</Text>
-        <Controller
-          control={control}
-          name="name"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              placeholder="Name"
-              value={value}
-              onChangeText={onChange}
-            />
-          )}
-        />
+        <Stack space={spacing.sm}>
+          <Text style={typography.title}>Name *</Text>
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="Name"
+                value={value}
+                onChangeText={onChange}
+              />
+            )}
+          />
+        </Stack>
+
         {errors.name && <Text style={styles.error}>{errors.name.message}</Text>}
         {/* Spot Type */}
-        <Text style={styles.label}>Spot Type *</Text>
-        <Controller
-          control={control}
-          name="spotType"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              placeholder="masjid / prayer_room / restaurant / cafe"
-              value={value}
-              onChangeText={onChange}
-            />
-          )}
-        />
+        <Stack space={spacing.sm}>
+          <Text style={typography.title}>Spot Type *</Text>
+          <Controller
+            control={control}
+            name="spotType"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                style={styles.input}
+                placeholder="masjid / prayer_room / restaurant / cafe"
+                value={value}
+                onChangeText={onChange}
+              />
+            )}
+          />
+        </Stack>
         {errors.spotType && (
           <Text style={styles.error}>{errors.spotType.message}</Text>
         )}
-        <Text style={styles.label}>Location</Text>
-        {/* Address */}
-        <Controller
-          control={control}
-          name="lat"
-          render={() => (
-            <LocationPicker
-              onLocationSelect={({ lat, lng, address, googleMapsUrl }) => {
-                setValue("lat", lat);
-                setValue("lng", lng);
-                setValue("address", address);
-                setValue("googleMapsUrl", googleMapsUrl);
-              }}
-            />
-          )}
-        />
+
+        <Stack space={spacing.sm}>
+          <Text style={typography.title}>Location</Text>
+          {/* Address */}
+          <Controller
+            control={control}
+            name="lat"
+            render={() => (
+              <LocationPicker
+                onLocationSelect={({ lat, lng, address, googleMapsUrl }) => {
+                  setValue("lat", lat);
+                  setValue("lng", lng);
+                  setValue("address", address);
+                  setValue("googleMapsUrl", googleMapsUrl);
+                }}
+              />
+            )}
+          />
+        </Stack>
         {/* Amenities */}
-        <Text style={styles.label}>Amenities</Text>
-        <View style={styles.amenitiesRow}>
-          {amenityKeys.map((field: AmenityKey) => (
-            <Controller
-              key={field}
-              control={control}
-              name={`amenities.${field}` as const}
-              render={({ field: { onChange, value } }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.pill,
-                    value ? styles.pillActive : styles.pillInactive,
-                  ]}
-                  onPress={() => onChange(!value)}
-                >
-                  <Text style={{ color: value ? "#2e4e2c" : "black" }}>
-                    {field}
-                  </Text>
-                </TouchableOpacity>
-              )}
-            />
-          ))}
-        </View>
+        <Stack space={spacing.sm}>
+          <Text style={typography.title}>Amenities</Text>
+          <View style={styles.amenitiesRow}>
+            {amenityKeys.map((field: AmenityKey) => (
+              <Controller
+                key={field}
+                control={control}
+                name={`amenities.${field}` as const}
+                render={({ field: { onChange, value } }) => (
+                  <TouchableOpacity
+                    style={[
+                      styles.pill,
+                      value ? styles.pillActive : styles.pillInactive,
+                    ]}
+                    onPress={() => onChange(!value)}
+                  >
+                    <Text style={{ color: value ? "#2e4e2c" : "black" }}>
+                      {field}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              />
+            ))}
+          </View>
+        </Stack>
 
         {/* Submit */}
-        <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+        <Stack space={spacing.sm}>
+          <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+        </Stack>
         {createdSpotId && <SpotImagesUploader spotId={createdSpotId} />}
       </View>
       <View>
@@ -249,87 +254,14 @@ export default function AddListing() {
           <Text>No listings yet.</Text>
         ) : (
           myListings.map((item) => (
-            <View
+            <PrayerSpotCard
               key={item.id}
-              style={{
-                padding: 12,
-                borderWidth: 1,
-                borderColor: "#ccc",
-                borderRadius: 8,
-                marginBottom: 12,
-              }}
-            >
-              <Text style={{ fontWeight: "600" }}>{item.name}</Text>
-              <View style={{ flexDirection: "row", marginTop: 6, gap: 12 }}>
-                <Pressable
-                  onPress={() =>
-                    Alert.alert("Delete?", "", [
-                      { text: "Cancel" },
-                      {
-                        text: "Delete",
-                        onPress: async () => {
-                          await deleteListing(item.id);
-                          loadListings();
-                        },
-                      },
-                    ])
-                  }
-                  style={{
-                    marginTop: 8,
-                    backgroundColor: "#f66",
-                    padding: 8,
-                    borderRadius: 6,
-                    flex: 1,
-                  }}
-                >
-                  <Text style={{ color: "white", textAlign: "center" }}>
-                    Delete
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => {
-                    Alert.alert(
-                      "Confirm Update",
-                      "Change the name to 'Updated Spot'?",
-                      [
-                        { text: "Cancel" },
-                        {
-                          text: "Yes",
-                          onPress: async () => {
-                            await updateListing(item.id, {
-                              name: "Updated Spot",
-                            });
-                            loadListings();
-                          },
-                        },
-                      ]
-                    );
-                  }}
-                  style={{
-                    marginTop: 8,
-                    backgroundColor: "#66f",
-                    padding: 8,
-                    borderRadius: 6,
-                    flex: 1,
-                  }}
-                >
-                  <Text style={{ color: "white", textAlign: "center" }}>
-                    Update
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
-            // <View style={{ padding: 12, borderBottomWidth: 1 }}>
-            //   <Text style={{ fontWeight: "bold" }}>{item.name}</Text>
-            //   <View style={{ flexDirection: "row", marginTop: 6, gap: 12 }}>
-            //     <Pressable onPress={() => handleUpdate(item)}>
-            //       <Text style={{ color: "blue" }}>Edit</Text>
-            //     </Pressable>
-            //     <Pressable onPress={() => handleDelete(item.id)}>
-            //       <Text style={{ color: "red" }}>Delete</Text>
-            //     </Pressable>
-            //   </View>
-            // </View>
+              name={item.name}
+              location={item.address}
+              hasWudu={item.amenities.wudu}
+              onEdit={() => handleUpdate(item)}
+              onDelete={() => handleDelete(item.id)}
+            />
           ))
         )}
       </View>
@@ -339,7 +271,7 @@ export default function AddListing() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: spacing.lg,
     backgroundColor: "#fff",
     flex: 1,
   },

@@ -1,6 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "./Themed";
+import { colors, spacing } from "./theme";
 
 export default function FilterPill({
   label,
@@ -17,7 +18,14 @@ export default function FilterPill({
       onPress={onPress}
     >
       {active && <FontAwesome size={12} name="close" />}
-      <Text style={{ color: active ? "#2e4e2c" : "black" }}>{label}</Text>
+      <Text
+        style={{
+          color: active ? colors.background : colors.text,
+          fontWeight: "500",
+        }}
+      >
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 }

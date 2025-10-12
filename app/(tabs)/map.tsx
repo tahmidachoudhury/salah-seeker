@@ -13,9 +13,9 @@ import { PrayerSpot } from "@/modules/spots/PrayerSpot";
 import { router } from "expo-router";
 import { getDistanceMiles } from "@/utils/geo";
 import { fetchPrayerTimes, getNextPrayer } from "@/lib/prayerTimes";
-import { Text } from "@/components/Themed";
+import { Text } from "@/components/ui/Themed";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import FilterPill from "@/components/FilterPill";
+import FilterPill from "@/components/ui/FilterPill";
 import { getUserLocation } from "@/lib/getUserLocation";
 
 // ! Currently this component serves 3 jobs

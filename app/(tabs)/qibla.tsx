@@ -3,7 +3,7 @@ import MapboxGL from "@rnmapbox/maps";
 import { useEffect, useState } from "react";
 import { PermissionsAndroid, Platform } from "react-native";
 import { getQiblaBearing } from "@/utils/getQiblaBearing";
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/ui/Themed";
 import { getUserLocation } from "@/lib/getUserLocation";
 
 export default function QiblaScreen() {
