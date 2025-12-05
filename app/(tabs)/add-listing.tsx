@@ -30,10 +30,25 @@ import Stack from "@/components/ui/Stack";
 
 //TODO: we still need directions, opening hours, availability, capacityHint, multiFaith, sectNotes, updatedAt
 
+const addressObjectSchema = z
+  .object({
+    road: z.string().optional(),
+    city: z.string().optional(),
+    city_district: z.string().optional(),
+    state: z.string().optional(),
+    country: z.string().optional(),
+    country_code: z.string().optional(),
+    postcode: z.string().optional(),
+    suburb: z.string().optional(),
+    "ISO3166-2-lvl4": z.string().optional(),
+    "ISO3166-2-lvl8": z.string().optional(),
+  })
+  .passthrough(); // Allow additional properties
+
 export const spotSchema = z.object({
   name: z.string().min(1, "Name is required"),
   spotType: z.enum(["masjid", "prayer_room", "restaurant", "cafe"]),
-  address: z.string().min(1, "Address is required"),
+  address: addressObjectSchema,
   lat: z.number().refine((val) => val !== 0, {
     message: "Please select a location",
   }),
@@ -69,7 +84,7 @@ export default function AddListing() {
     defaultValues: {
       name: "",
       spotType: "masjid",
-      address: "",
+      address: {},
       lat: 0,
       lng: 0,
       amenities: {
@@ -90,6 +105,7 @@ export default function AddListing() {
   type AmenityKey = (typeof amenityKeys)[number];
 
   const onSubmit = async (data: SpotForm) => {
+    console.log("pinged!");
     if (!auth.currentUser) {
       console.log("❌ No authenticated user");
       Alert.alert("Only logged in users can add listings.");
@@ -97,8 +113,23 @@ export default function AddListing() {
     }
     console.log("✅ Form passed validation:", data);
     try {
+      // Convert address object to display string
+      const addressString =
+        typeof data.address === "string"
+          ? data.address
+          : [
+              data.address.road,
+              data.address.city,
+              data.address.postcode,
+              data.address.country,
+            ]
+              .filter(Boolean)
+              .join(", ") || "Address not available";
+
       const docRef = await addDoc(collection(db, "spots"), {
         ...data,
+        address: addressString, // Store as string in Firestore
+        addressDetails: data.address, // Also store the full object if needed
         location: {
           lat: data.lat,
           lng: data.lng,
@@ -182,6 +213,18 @@ export default function AddListing() {
             )}
           />
         </Stack>
+        {errors.address && (
+          <Text style={styles.error}>
+            {typeof errors.address === "object" &&
+            errors.address !== null &&
+            "message" in errors.address
+              ? String(errors.address.message)
+              : "Please select a location"}
+          </Text>
+        )}
+        {errors.lat && <Text style={styles.error}>{errors.lat.message}</Text>}
+        {errors.lng && <Text style={styles.error}>{errors.lng.message}</Text>}
+
         {/* Amenities */}
         <Stack space={spacing.sm}>
           <Text style={typography.title}>Amenities</Text>
@@ -211,7 +254,19 @@ export default function AddListing() {
 
         {/* Submit */}
         <Stack space={spacing.sm}>
-          <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+          <Button
+            title="Submit"
+            onPress={() => {
+              console.log("Button pressed, errors:", errors);
+              handleSubmit(onSubmit, (err) => {
+                console.log("Validation errors:", err);
+                Alert.alert(
+                  "Validation Error",
+                  "Please fill in all required fields. Check the form for details."
+                );
+              })();
+            }}
+          />
         </Stack>
         {createdSpotId && <SpotImagesUploader spotId={createdSpotId} />}
       </View>

@@ -68,7 +68,20 @@ export interface SpotMarker {
     disabilityAccess: boolean;
   };
   spotType: "masjid" | "prayer_room" | "restaurant" | "cafe";
-  address: string; // added from Nominatim
+  address: string; // added from Nominatim (fallback string)
+  addressDetails?: {
+    road?: string;
+    city?: string;
+    city_district?: string;
+    state?: string;
+    country?: string;
+    country_code?: string;
+    postcode?: string;
+    suburb?: string;
+    "ISO3166-2-lvl4"?: string;
+    "ISO3166-2-lvl8"?: string;
+    [key: string]: any; // Allow additional properties
+  }; // Full address object from Nominatim
   googleMapsUrl?: string; // added for "Get Directions"
   verified?: boolean;
 }

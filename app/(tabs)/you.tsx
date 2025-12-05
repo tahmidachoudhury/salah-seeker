@@ -7,6 +7,7 @@ import {
   getMyListings,
   updateListing,
 } from "@/modules/spots/firestore";
+import getDisplayAddress from "@/modules/spots/formatAddress";
 import { useEffect, useState } from "react";
 import { Alert, ScrollView } from "react-native";
 
@@ -52,17 +53,23 @@ export default function YouScreen() {
         {myListings.length === 0 ? (
           <Text>No listings yet.</Text>
         ) : (
-          myListings.map((spot) => (
-            <PrayerSpotCard
-              key={spot.id}
-              name={spot.name}
-              address={spot.address}
-              type={spot.spotType}
-              imageUrl={spot.images?.[0]?.url ?? ""}
-              verified={spot.verified}
-              onDelete={() => handleDelete(spot.id)}
-            />
-          ))
+          myListings.map((spot) => {
+            const displayAddress = getDisplayAddress(
+              spot.addressDetails,
+              spot.address
+            );
+            return (
+              <PrayerSpotCard
+                key={spot.id}
+                name={spot.name}
+                address={displayAddress}
+                type={spot.spotType}
+                imageUrl={spot.images?.[0]?.url ?? ""}
+                verified={spot.verified}
+                onDelete={() => handleDelete(spot.id)}
+              />
+            );
+          })
         )}
       </View>
     </ScrollView>

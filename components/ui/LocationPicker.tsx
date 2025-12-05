@@ -7,7 +7,7 @@ type Props = {
   onLocationSelect: (data: {
     lat: number;
     lng: number;
-    address: string;
+    address: Record<string, any>; // Nominatim address object
     googleMapsUrl: string;
   }) => void;
 };
@@ -20,6 +20,7 @@ export default function LocationPicker({ onLocationSelect }: Props) {
   const [coords, setCoords] = useState<[number, number]>([0, 0]); // [lng, lat]
   const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState<string | null>(null);
+  const [display, setDisplay] = useState<string | null>(null);
 
   useEffect(() => {
     const getLocation = async () => {
@@ -42,8 +43,11 @@ export default function LocationPicker({ onLocationSelect }: Props) {
         headers: { "User-Agent": "salah-seeker/1.0" }, // required by Nominatim
       });
       const data = await res.json();
-      const addr = data.display_name || "Unknown address";
+      const display = data.display_name || "Unknown address";
+      const addr = data.address || "Unknown address";
+
       setAddress(addr);
+      setDisplay(display);
 
       onLocationSelect({
         lat,
@@ -92,7 +96,7 @@ export default function LocationPicker({ onLocationSelect }: Props) {
             borderWidth: 1,
           }}
         >
-          <Text style={{ fontSize: 12 }}>{address}</Text>
+          <Text style={{ fontSize: 12 }}>{display}</Text>
         </View>
       )}
     </View>
