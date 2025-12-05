@@ -124,3 +124,8 @@ EXPO_PUBLIC_DEMO_LNG=-0.1278
 - Added full CRUD operations to contribute page
 - User can read, update, delete their own listings
 - Firebase rules and permission updated with least privelage
+
+### 📅 December 05, 2025
+
+- Full UI/UX screens have been built on Figma over the course of November
+- Refactoring screens and refactoring prayer spot card

@@ -54,6 +54,13 @@ export interface SpotMarker {
     lat: number;
     lng: number;
   };
+  images: {
+    url: string;
+    path?: string | null;
+    createdBy: string;
+    width?: number;
+    height?: number;
+  }[];
   amenities: {
     toilets: boolean;
     women: boolean;

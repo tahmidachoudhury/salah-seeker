@@ -8,7 +8,7 @@ import {
   updateListing,
 } from "@/modules/spots/firestore";
 import { useEffect, useState } from "react";
-import { Alert } from "react-native";
+import { Alert, ScrollView } from "react-native";
 
 export default function YouScreen() {
   const [myListings, setMyListings] = useState<SpotMarker[]>([]);
@@ -42,26 +42,29 @@ export default function YouScreen() {
   };
 
   return (
-    <View style={{ padding: spacing.lg, flex: 1 }}>
-      <Text style={typography.title}>Your Prayer Listings</Text>
-      <Text style={{ marginTop: spacing.md }}>
-        Your profile and saved items will appear here.
-      </Text>
+    <ScrollView>
+      <View style={{ padding: spacing.lg, flex: 1 }}>
+        <Text style={typography.title}>Your Prayer Listings</Text>
+        <Text style={{ marginTop: spacing.md }}>
+          Your profile and saved items will appear here.
+        </Text>
 
-      {myListings.length === 0 ? (
-        <Text>No listings yet.</Text>
-      ) : (
-        myListings.map((item) => (
-          <PrayerSpotCard
-            key={item.id}
-            name={item.name}
-            location={item.address}
-            hasWudu={item.amenities.wudu}
-            onEdit={() => handleUpdate(item)}
-            onDelete={() => handleDelete(item.id)}
-          />
-        ))
-      )}
-    </View>
+        {myListings.length === 0 ? (
+          <Text>No listings yet.</Text>
+        ) : (
+          myListings.map((spot) => (
+            <PrayerSpotCard
+              key={spot.id}
+              name={spot.name}
+              address={spot.address}
+              type={spot.spotType}
+              imageUrl={spot.images?.[0]?.url ?? ""}
+              verified={spot.verified}
+              onDelete={() => handleDelete(spot.id)}
+            />
+          ))
+        )}
+      </View>
+    </ScrollView>
   );
 }
