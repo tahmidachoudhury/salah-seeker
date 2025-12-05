@@ -155,7 +155,7 @@ export default function MapScreen() {
       {/* Using custom map with point annotation and zooming into user's location */}
       <MapboxGL.MapView
         style={styles.map}
-        styleURL="mapbox://styles/tahmid01/cmfikgi6b004k01quevez8hsu"
+        styleURL="mapbox://styles/tahmid01/cmitea7gm002801r5ci2aecoc"
         // styleURL="mapbox://styles/mapbox/light-v11" -> just a backup style to test and compare
         logoEnabled={false}
       >
@@ -164,6 +164,11 @@ export default function MapScreen() {
           centerCoordinate={
             userCoords ? [effectiveLng, effectiveLat] : [-0.1278, 51.5074]
           } // Fallback to London
+          maxBounds={{
+            // note: lng, lat
+            sw: [-10.5, 49.0],
+            ne: [2.1, 59.0],
+          }}
         />
         <MapboxGL.UserLocation
           visible={!DEMO_MODE}

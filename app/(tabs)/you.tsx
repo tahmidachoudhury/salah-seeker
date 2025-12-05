@@ -45,9 +45,8 @@ export default function YouScreen() {
   return (
     <ScrollView>
       <View style={{ padding: spacing.lg, flex: 1 }}>
-        <Text style={typography.title}>Your Prayer Listings</Text>
-        <Text style={{ marginTop: spacing.md }}>
-          Your profile and saved items will appear here.
+        <Text style={[typography.title, { marginBottom: spacing.md }]}>
+          Your Prayer Listings
         </Text>
 
         {myListings.length === 0 ? (
