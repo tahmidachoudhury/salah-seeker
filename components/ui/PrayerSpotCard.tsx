@@ -37,25 +37,27 @@ export default function PrayerSpotCard({
 
       {/* Bottom info section */}
       <View style={styles.info}>
-        <Text style={styles.title}>{name}</Text>
+        <View>
+          <Text style={styles.title}>{name}</Text>
 
-        {/* Address row */}
-        <View style={styles.row}>
-          <MapPin size={16} color="#111827" style={styles.icon} />
-          <Text style={styles.text}>{address}</Text>
+          {/* Address row */}
+          <View style={styles.row}>
+            <MapPin size={16} color="#111827" style={styles.icon} />
+            <Text style={styles.text}>{address}</Text>
+          </View>
+
+          {/* Type row */}
+          <View style={styles.row}>
+            <Building2 size={16} color="#111827" style={styles.icon} />
+            <Text style={styles.text}>{type}</Text>
+          </View>
         </View>
 
-        {/* Type row */}
-        <View style={styles.row}>
-          <Building2 size={16} color="#111827" style={styles.icon} />
-          <Text style={styles.text}>{type}</Text>
-        </View>
-
-        {/* Verified badge bottom-right */}
+        {/* Verified badge middle-right */}
         {verified && (
           <View style={styles.verifiedWrapper}>
             <View style={styles.verifiedBadge}>
-              <BadgeCheck size={18} color="#111827" />
+              <BadgeCheck size={32} color="#111827" />
             </View>
           </View>
         )}
@@ -100,6 +102,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#C7F9FF", // bottom panel colour
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
+    display: "flex",
+    flexDirection: "row",
   },
   title: {
     ...typography.title,
@@ -117,14 +121,13 @@ const styles = StyleSheet.create({
     ...typography.body,
   },
   verifiedWrapper: {
-    marginTop: spacing.md,
+    justifyContent: "center",
     alignItems: "flex-end",
+    marginLeft: spacing.md,
   },
   verifiedBadge: {
-    padding: spacing.sm,
+    padding: spacing.md,
     borderRadius: 999,
-    borderWidth: 1,
-    borderColor: "#111827",
     backgroundColor: "transparent",
   },
 });
