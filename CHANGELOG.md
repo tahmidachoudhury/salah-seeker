@@ -127,5 +127,12 @@ EXPO_PUBLIC_DEMO_LNG=-0.1278
 
 ### 📅 December 05, 2025
 
-- Full UI/UX screens have been built on Figma over the course of November
+- Full UI/UX screens have been built on Figma over the course of October
+- Took a break in November and recovered from sickness
 - Refactoring screens and refactoring prayer spot card
+
+### 📅 December 06, 2025
+
+- User created prayer listing cards have been made
+- Camera only shows the UK map - added bounding box
+- Added community map, same design from figma
